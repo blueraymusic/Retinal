@@ -17,7 +17,7 @@ def load_data(file_name, separator=';'):
         return dataDF
     except IOError as ioe:
         # file didn't exist (or other issues)
-        print('File do not exist!')
+        print('File does not exist!')
         print(ioe)
         return False
 
