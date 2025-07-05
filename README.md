@@ -103,9 +103,9 @@ Retinal-Disease-Detection/
 
 **Example label structure**:
 
-| filename          | opacity | dr | glaucoma | edema | degeneration | rvo | normal |
-|------------------|---------|----|----------|--------|---------------|-----|--------|
-| `c24a1b14d253.jpg` |   0     | 0  |    0     |   0    |      0        |  1  |   0    |
+| filename          | opacity | dr | glaucoma | edema  | degeneration  | rvo | normal |
+|------------------ |---------|----|----------|--------|---------------|-----|--------|
+| `c24a1b14d253.jpg`|   0     | 0  |    0     |   0    |      0        |  1  |   0    |
 
 > Data was also accessed via this repo (due to Kaggle auth issues):  
 [zequeira/Retinal-Disease-Detection](https://github.com/zequeira/Retinal-Disease-Detection/tree/main/data)
