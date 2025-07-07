@@ -120,10 +120,12 @@ Retinal-Disease-Detection/
 
 \`\`\`
 Prediction:
-- Diabetic Retinopathy: 94%
-- Glaucoma: 5%
+- Diabetic Retinopathy: 99.4%
+- Opacity: 87.3%
 - Macular Degeneration: <1%
 \`\`\`
+
+Output: We suspect with high confidence the presence of diabetic retinopathy (100.0%), macular edema (99.4%), and opacity (87.3%) in the retinal image. These findings suggest that the patient is likely experiencing significant eye health issues. Diabetic retinopathy is a condition where high blood sugar levels damage blood vessels in the retina, potentially leading to vision loss. Macular edema involves swelling in the macula, the part of the retina responsible for sharp vision, which can result in blurred or distorted vision. Opacity, such as cataracts, causes clouding of the eye's lens, reducing clarity and brightness of vision. These conditions are crucial to address as they can lead to serious vision impairment or blindness if left untreated.
 
 ---
 
