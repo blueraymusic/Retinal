@@ -114,10 +114,9 @@ Retinal-Disease-Detection/
 
 ## Sample Output
 
-\`\`\`
 Input:
 ![0e5235b62de8](https://github.com/user-attachments/assets/d9fbc550-1b09-4509-89aa-f4c3de6303ad)
-\`\`\`
+
 
 
 \`\`\`
