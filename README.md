@@ -67,6 +67,7 @@ The aim is to make diagnosis faster, more transparent, and educational—for bot
 
 ## File Structure
 
+```
 Retinal-Disease-Detection/
 ├── train.py           # Script to train the model
 ├── inference.py       # Run inference on new images
@@ -79,7 +80,7 @@ Retinal-Disease-Detection/
 ├── data/              
 │   ├── train.csv      # Label file mapping images to diseases
 │   └── train/         # Retinal images used for training (.jpg files)
-
+```
 
 ---
 
