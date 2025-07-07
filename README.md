@@ -67,20 +67,18 @@ The aim is to make diagnosis faster, more transparent, and educational—for bot
 
 ## File Structure
 
-\`\`\`
 Retinal-Disease-Detection/
-├── train.py           # Train the model
-├── inference.py       # Run inference and predictions
-├── checker.py         # Image validity checker
-├── explainer.py       # GPT-4 explanation generator
-├── utils.py           # Helper functions (matplotlib, plotting)
-├── main.py            # Main
+├── train.py           # Script to train the model
+├── inference.py       # Run inference on new images
+├── checker.py         # Validate uploaded image files
+├── explainer.py       # Generate GPT-4 explanations for predictions
+├── utils.py           # Common utilities (e.g., visualization)
+├── main.py            # Entry point for the application
 │
-├── models/            # Trained weights
+├── models/            # Directory to store trained model weights
 ├── data/              
-│   ├── train.csv      # Label file
-│   └── train/*.jpg    # Retinal images
-\`\`\`
+│   ├── train.csv      # Label file mapping images to diseases
+│   └── train/         # Retinal images used for training (.jpg files)
 
 ---
 
