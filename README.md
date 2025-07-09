@@ -1,5 +1,4 @@
-<<<<<<< ours
-<<<<<<< HEAD
+
 ## Retinal Anomaly Detection
  
 **Explainable AI for Retinal Disease Detection using Deep Learning and GPT-4**
