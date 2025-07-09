@@ -102,6 +102,10 @@ Retinal-Disease-Detection/
   - Retinal Vascular Occlusion (RVO)  
   - Normal
 
+![correlation_heatmap](https://github.com/user-attachments/assets/3a5a63d4-3557-46f6-8f55-bcf3631b572e)
+![proportion](https://github.com/user-attachments/assets/a50f1580-4fe4-4776-9ba1-0b5cb59e15c1)
+<img width="1322" alt="venn" src="https://github.com/user-attachments/assets/7b1db703-bc10-4073-8786-46906d533f4b" />
+
 **Example label structure**:
 
 | filename          | opacity | dr | glaucoma | edema  | degeneration  | rvo | normal |
