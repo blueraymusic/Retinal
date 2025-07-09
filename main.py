@@ -104,7 +104,7 @@ if is_retinal_image_openai(model.path):
     print(model.explain())
     print()
     print("Data Visualization ...")
-    print(model.data_visual() if (model.data_visual()) != -1 else "")
+    print(model.data_visual())
 
 else:
     print("Not a valid retinal image.")
