@@ -141,7 +141,6 @@ We suspect with high confidence the presence of diabetic retinopathy (99.4%), ma
 
 ---
 
----
 
 ## License  
 **MIT License** – Free for use in research, education, and development.
