@@ -16,7 +16,8 @@ from sklearn.model_selection import train_test_split
 from tqdm import tqdm
 
 # utils.py for visuals
-from utils import load_data, category_percentage, correlation_between_labels, venn_diagram
+#from utils import load_data, category_percentage, correlation_between_labels, venn_diagram
+from chart.utils import load_data, category_percentage, correlation_between_labels, venn_diagram
 
 """
 - Transfer Learning: ResNet-50 pretrained on ImageNet is fine-tuned 
