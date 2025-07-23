@@ -9,7 +9,10 @@ from pathlib import Path
 from inference import run_inference
 from checker import is_retinal_image_openai
 from explainer import explain_prediction
-from utils import load_data, category_percentage, correlation_between_labels, venn_diagram
+
+#from utils import load_data, category_percentage, correlation_between_labels, venn_diagram
+from chart.utils import load_data, category_percentage, correlation_between_labels, venn_diagram
+
 
 """
 < Unifying (Abstration) for easy implementation and retrieve using simple calls as follows: >
