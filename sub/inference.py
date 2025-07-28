@@ -20,7 +20,7 @@ import warnings
 # Ignore torchvision deprecation warnings
 warnings.filterwarnings("ignore", category=UserWarning)
 
-MODEL_PATH = 'models/model.pth'
+MODEL_PATH = 'models/model_v2.pth'
 LABELS_CSV = 'data/train/train.csv'
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
