@@ -1,0 +1,28 @@
+2d8cb49 Track Desk Change
+9ccafcf keep track with desk
+01d6adc Update Main to Keep Changes
+1d16747 Update README.md
+63c821b Update README.md
+14c6ac8 Merge pull request #5 from blueraymusic/data_train_commit
+bd13086 Initial commit with train and data
+8526f21 Save test results to a file.
+c02f33f Code Update
+1c47ec3 Code Update
+37214a4 Jupyter Notebook Update
+48a8b60 First Commit
+7c0bb99 Initial commit
+a634f82 Create LICENSE
+29e4aa3 Update README.md
+0b3e00d Update README.md
+ebf04a2 Update README.md
+acdc4a0 Update README.md
+876c7fb Update README.md
+3d9e22b Update README.md
+c426396 Update README.md
+01a8db2 Update README.md
+429ed05 Update README.md
+41093c0 Update README.md
+2a7bfa1 Update README.md
+9aace1e Merge pull request #1 from TechX-Resources/Retinal_Readme
+22edccf Update README.md
+d9e771d Initial commit
