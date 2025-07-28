@@ -16,8 +16,12 @@ from sklearn.model_selection import train_test_split
 from tqdm import tqdm
 
 # utils.py for visuals
+
 #from utils import load_data, category_percentage, correlation_between_labels, venn_diagram
 from chart.utils import load_data, category_percentage, correlation_between_labels, venn_diagram
+#from sub.glcm import compute_glcm_features
+
+
 
 """
 - Transfer Learning: ResNet-50 pretrained on ImageNet is fine-tuned 
@@ -42,8 +46,9 @@ class RetinalDisorderDataset(Dataset):
 
     def __getitem__(self, idx):
         img_path = os.path.join(self.img_dir, self.img_data.iloc[idx]['filename'])
-        image = read_image(img_path)
+        image = read_image(img_path) 
         image = self.transform(image)
+        
         # Ensure label values are float type (fix conversion error)
         label = self.img_data.iloc[idx, 1:].astype(float).values
         label = torch.tensor(label, dtype=torch.float32)
@@ -145,13 +150,14 @@ if __name__ == '__main__':
     # Load CSV data - adjust path as necessary
     train_df = load_data('data/train/train.csv', ',')
 
-    # Labels excluding filename column
+    # Labels excluding filename column (Because the excel starts with 'filename')
     disease_labels = train_df.columns[1:]
 
-    # Data splits
+    # Data splits (90% to 10%)
     train_data, val_data = train_test_split(train_df, train_size=0.9, random_state=42)
 
     # Image transformations for augmentation and normalization
+    """
     img_transforms = {
         'train': transforms.Compose([
             transforms.ToPILImage(),
@@ -170,6 +176,27 @@ if __name__ == '__main__':
                                  [0.229, 0.224, 0.225])
         ]),
     }
+    """
+    img_transforms = {
+    'train': transforms.Compose([
+        transforms.ToPILImage(),
+        transforms.RandomHorizontalFlip(p=0.5),
+        transforms.RandomRotation(degrees=360),  #trial 15 to 30
+        transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.1), 
+        transforms.RandomResizedCrop(224, scale=(0.9, 1.0)),  
+        transforms.ToTensor(),
+        transforms.Normalize([0.485, 0.456, 0.406],
+                             [0.229, 0.224, 0.225])
+    ]),
+    'val': transforms.Compose([
+        transforms.ToPILImage(),
+        transforms.Resize((224, 224)), 
+        transforms.ToTensor(),
+        transforms.Normalize([0.485, 0.456, 0.406],
+                             [0.229, 0.224, 0.225])
+    ]),
+    }
+
 
     data_df = {'train': train_data, 'val': val_data}
 
@@ -189,11 +216,19 @@ if __name__ == '__main__':
 
     # Freeze layers except last block & fc
     for name, param in model.named_parameters():
+        #if not any(layer in name for layer in ['layer3', 'layer4', 'fc']):
         if "layer4" not in name and "fc" not in name:
             param.requires_grad = False
 
+    """
     num_ftrs = model.fc.in_features
     model.fc = nn.Linear(num_ftrs, len(disease_labels))
+    """
+    num_ftrs = model.fc.in_features
+    model.fc = nn.Sequential(
+        nn.Dropout(p=0.2),  # 20% dropout before final layer
+        nn.Linear(num_ftrs, len(disease_labels))
+    )
     model = model.to(device)
 
     pos_weight = get_pos_weight(train_df.iloc[:, 1:])
@@ -204,6 +239,6 @@ if __name__ == '__main__':
     scheduler = lr_scheduler.StepLR(optimizer, step_size=7, gamma=0.1)
 
     model, loss_history = train_model(model, criterion, optimizer, scheduler, dataloaders, device,
-                                      num_epochs=30, model_name='ResNet50_Retinal')
+                                      num_epochs=25, model_name='model_with_dropout')
 
     plot_loss_history(loss_history['train'], loss_history['val'])

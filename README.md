@@ -1,7 +1,6 @@
-
 ## Retinal Anomaly Detection
  
-**Explainable AI for Retinal Disease Detection using Deep Learning and GPT-4**
+**Explainable AI for Retinal Disease Detection using Deep Learning**
 
 ---
 
@@ -11,7 +10,6 @@ Early diagnosis of retinal diseases—such as **diabetic retinopathy**, **glauco
 - Requires skilled ophthalmologists and if not diagnosed early cand correctly, could lead to irreversible vision loss.
 - Can suffer from inter-observer variability
   
-
 This project builds an **automated and explainable AI system** to assist healthcare professionals in detecting retinal anomalies accurately and interpretably.
 
 ---
@@ -19,9 +17,21 @@ This project builds an **automated and explainable AI system** to assist healthc
 ## My Objective
 To build an end-to-end AI pipeline that:
 - Detects multiple retinal diseases from fundus images  
-- Explains its predictions in **plain English** using **GPT-4**
+- Explains its predictions in **plain English** using **GPT-4** as the interpreter
 
 The aim is to make diagnosis faster, more transparent, and educational—for both patients and practitioners.
+
+---
+
+## Targeted Diseases
+As of now, the diseases covered by the model are:
+- Opacity
+- Diabetic Retinopathy
+- Glaucoma
+- Macular Edema
+- Macular Degeneration
+- Retinal Vascular Occlusion
+- Normal Eye
 
 ---
 
@@ -30,7 +40,7 @@ The aim is to make diagnosis faster, more transparent, and educational—for bot
 ### 1. Multi-Label Retinal Disease Classifier
 - **Model**: Transferring learning from  `ResNet50` (changed the 4th layer to train on the data, so as to keep the other trained features)
 - **Dataset**: Fundus images from Kaggle + other public sources  
-- **Labels**: Multi-label output for 7 retinal conditions  
+- **Labels**: Multi-label output for 7 retinal conditions 
 
 
 ### 2. Inference & Upload Interface
@@ -62,7 +72,7 @@ The aim is to make diagnosis faster, more transparent, and educational—for bot
 | Data Handling     | Numpy                      |
 | NLP Explanation   | OpenAI GPT-4 API           |
 | Inference Server  | Flask                      |
-| Optional UI       | HTML, CSS, JavaScript      |
+| Optional UI       | Web (H, C, J) or TKinter   |
 
 ---
 
@@ -70,17 +80,53 @@ The aim is to make diagnosis faster, more transparent, and educational—for bot
 
 ```
 Retinal-Disease-Detection/
-├── train.py           # Script to train the model
-├── inference.py       # Run inference on new images
-├── checker.py         # Validate uploaded image files
-├── explainer.py       # Generate GPT-4 explanations for predictions
-├── utils.py           # Common utilities (e.g., visualization)
-├── main.py            # Entry point for the application
-│
-├── models/            # Directory to store trained model weights
-├── data/              
-│   ├── train.csv      # Label file mapping images to diseases
-│   └── train/         # Retinal images used for training (.jpg files)
+├── chart/
+    ├── __init__.py
+    ├── glcm.py
+    └── utils.py
+
+├── data/
+    ├── test/
+        └── ...
+    ├── train/
+        ├──train/
+           ├── img.jpg
+           └── ...
+        └── train.csv
+    ├── data_analysis.md
+    └── trials.md
+
+├── data_visual/
+    └── output/
+        └── chart.png
+    ├── data.png
+    └── ...
+
+├── models/
+    ├── model_best.pth
+    └── model_v1.pth
+
+├── sub/
+    ├── __init__.py
+    ├── checker.py
+    ├── explainer.py
+    └── inference.py
+
+├── trainOutputs/
+    └── graph/
+        ├── v1_loss_plot.png
+        └── v2_loss_plot.png
+    ├── v1.txt
+    └── v2.txt
+
+├── .gitignore 
+├── LICENSE
+├── main.py
+├── README.md
+├── requirements.txt
+├── train.py
+└── Updates.md
+
 ```
 
 ---
@@ -101,10 +147,6 @@ Retinal-Disease-Detection/
   - Macular Degeneration  
   - Retinal Vascular Occlusion (RVO)  
   - Normal
-
-![correlation_heatmap](https://github.com/user-attachments/assets/3a5a63d4-3557-46f6-8f55-bcf3631b572e)
-![proportion](https://github.com/user-attachments/assets/a50f1580-4fe4-4776-9ba1-0b5cb59e15c1)
-<img width="1322" alt="venn" src="https://github.com/user-attachments/assets/7b1db703-bc10-4073-8786-46906d533f4b" />
 
 **Example label structure**:
 
@@ -134,13 +176,17 @@ We suspect with high confidence the presence of diabetic retinopathy (99.4%), ma
 
 ---
 
-## Future Directions (Optional)
+## Current Updates & Future Directions
 
 -  Feedback loop for post-diagnosis correction and retraining 
 -  Lightweight offline mode for clinics  
 
+-> [View Updates](Updates.md)
+Updates.md would contain & track all the experiments advancements and failures regarding the data analysis and model performance. Summarizing it in order to keep track over time.
+
 ---
 
+---
 
 ## License  
 **MIT License** – Free for use in research, education, and development.
