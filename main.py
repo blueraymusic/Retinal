@@ -6,12 +6,14 @@ import matplotlib.pyplot as plt
 from matplotlib_venn import venn3, venn3_circles
 
 from pathlib import Path
-from inference import run_inference
-from checker import is_retinal_image_openai
-from explainer import explain_prediction
+
+#locals
+from sub.inference import run_inference
+from sub.checker import is_retinal_image_openai
+from sub.explainer import explain_prediction
 
 #from utils import load_data, category_percentage, correlation_between_labels, venn_diagram
-from chart.utils import load_data, category_percentage, correlation_between_labels, venn_diagram
+#from chart.utils import load_data, category_percentage, correlation_between_labels, venn_diagram
 
 
 """
@@ -61,7 +63,7 @@ class Model:
     
     def data_visual(self) -> int:
         try: 
-            from utils import load_data, category_percentage, correlation_between_labels, venn_diagram
+            from chart.utils import load_data, category_percentage, correlation_between_labels, venn_diagram
         except ImportError as ie:
             print("Import Error :", str(ie))
             return -1
@@ -93,8 +95,6 @@ class Model:
             print("Failed to load DataFrame.")
         
 
-
-
 #image_path = "data/test/0a2229abced7.jpg" for testing
 model = Model()
 model.random_pick()
@@ -111,4 +111,3 @@ if is_retinal_image_openai(model.path):
 
 else:
     print("Not a valid retinal image.")
-
