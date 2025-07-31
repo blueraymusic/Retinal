@@ -78,7 +78,8 @@ def get_pos_weight(df):
     return pos_weight
 
 
-def train_model(model, criterion, optimizer, scheduler, dataloaders, device, num_epochs=25, model_name=None):
+def train_model(model, criterion, optimizer, scheduler, dataloaders, device, num_epochs=25, model_name=None,
+                early_stopping_patience=5, early_stopping_delta=0.0):
     model_name = model_name if model_name else model.__class__.__name__
 
     if not os.path.exists('models'):
@@ -87,17 +88,16 @@ def train_model(model, criterion, optimizer, scheduler, dataloaders, device, num
     since = time.time()
     best_model_wts = copy.deepcopy(model.state_dict())
     best_loss = float('inf')
+    epochs_no_improve = 0
+
     loss_history = {'train': [], 'val': []}
 
     for epoch in range(1, num_epochs + 1):
-        print(f'Epoch {epoch}/{num_epochs}')
+        print(f'\nEpoch {epoch}/{num_epochs}')
         print('-' * 10)
 
         for phase in ['train', 'val']:
-            if phase == 'train':
-                model.train()
-            else:
-                model.eval()
+            model.train() if phase == 'train' else model.eval()
 
             running_loss = 0.0
             running_corrects = 0
@@ -127,19 +127,28 @@ def train_model(model, criterion, optimizer, scheduler, dataloaders, device, num
 
             loss_history[phase].append(epoch_loss)
 
+            print(f'{phase} Loss: {epoch_loss:.4f} Acc: {epoch_acc:.4f}')
+
             if phase == 'train':
-                print(f'{phase} Loss: {epoch_loss:.4f} Acc: {epoch_acc:.4f}')
                 scheduler.step()
             else:
-                print(f'{phase} Loss: {epoch_loss:.4f} Acc: {epoch_acc:.4f}')
+                if epoch_loss < best_loss - early_stopping_delta:
+                    print(f'Validation loss improved: {best_loss:.4f} → {epoch_loss:.4f}')
+                    best_loss = epoch_loss
+                    best_model_wts = copy.deepcopy(model.state_dict())
+                    torch.save(model.state_dict(), f'models/{model_name}_best.pth')
+                    epochs_no_improve = 0
+                else:
+                    epochs_no_improve += 1
+                    print(f'No improvement for {epochs_no_improve} epoch(s)')
 
-            if phase == 'val' and epoch_loss < best_loss:
-                best_loss = epoch_loss
-                best_model_wts = copy.deepcopy(model.state_dict())
-                torch.save(model.state_dict(), f'models/{model_name}_best.pth')
+                if epochs_no_improve >= early_stopping_patience:
+                    print(f'\nEarly stopping triggered after {epoch} epochs.')
+                    model.load_state_dict(best_model_wts)
+                    return model, loss_history
 
     time_elapsed = time.time() - since
-    print(f'Training complete in {time_elapsed//60:.0f}m {time_elapsed%60:.0f}s')
+    print(f'\nTraining complete in {time_elapsed//60:.0f}m {time_elapsed%60:.0f}s')
     print(f'Best val Loss: {best_loss:.4f}')
 
     model.load_state_dict(best_model_wts)
@@ -181,7 +190,7 @@ if __name__ == '__main__':
     'train': transforms.Compose([
         transforms.ToPILImage(),
         transforms.RandomHorizontalFlip(p=0.5),
-        transforms.RandomRotation(degrees=360),  #trial 15 to 30
+        transforms.RandomRotation(degrees=15),  #trial 15 to 30
         transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.1), 
         transforms.RandomResizedCrop(224, scale=(0.9, 1.0)),  
         transforms.ToTensor(),
@@ -226,7 +235,7 @@ if __name__ == '__main__':
     """
     num_ftrs = model.fc.in_features
     model.fc = nn.Sequential(
-        nn.Dropout(p=0.2),  # 20% dropout before final layer
+        nn.Dropout(p=0.35),  # 20% dropout before final layer
         nn.Linear(num_ftrs, len(disease_labels))
     )
     model = model.to(device)
@@ -238,7 +247,12 @@ if __name__ == '__main__':
     optimizer = torch.optim.Adam(model.parameters(), lr=0.0001)
     scheduler = lr_scheduler.StepLR(optimizer, step_size=7, gamma=0.1)
 
-    model, loss_history = train_model(model, criterion, optimizer, scheduler, dataloaders, device,
-                                      num_epochs=25, model_name='model_with_dropout')
+    model, loss_history = train_model(
+        model, criterion, optimizer, scheduler, dataloaders, device,
+        num_epochs=25,
+        model_name='model_v3_based_v1.pth',
+        early_stopping_patience=5,
+        early_stopping_delta=0.001
+    )
 
     plot_loss_history(loss_history['train'], loss_history['val'])
