@@ -46,4 +46,6 @@ A detailed log tracking model architecture changes, feature engineering (e.g., G
       nn.Linear(2048, num_classes)
   )
 
-**Observation**: To be determined!
+**Training Accuracy**: 0,6247
+**Validation Accuracy**:0,558
+**Observation**: Improved the generalization but induced a pronounced overfitting
