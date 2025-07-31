@@ -1,0 +1,110 @@
+(.venv) bla@Blabook RetinalAnomalyDetection % /Users/bla/Desktop/RetinalAnomalyDetection/.venv/bin/python /Users/bla/Desktop/RetinalAnomalyDetection/train.py
+FILE EXISTS
+Using device: cpu
+/Users/bla/Desktop/RetinalAnomalyDetection/.venv/lib/python3.13/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/Users/bla/Desktop/RetinalAnomalyDetection/.venv/lib/python3.13/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet50_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet50_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Epoch 1/25
+----------
+train Loss: 0.7566 Acc: 0.2035                                                                                                                                   
+val Loss: 0.5798 Acc: 0.3285                                                                                                                                     
+Epoch 2/25
+----------
+train Loss: 0.5451 Acc: 0.3921                                                                                                                                   
+val Loss: 0.5277 Acc: 0.4099                                                                                                                                     
+Epoch 3/25
+----------
+train Loss: 0.4481 Acc: 0.4516                                                                                                                                   
+val Loss: 0.4774 Acc: 0.4855                                                                                                                                     
+Epoch 4/25
+----------
+train Loss: 0.3772 Acc: 0.5183                                                                                                                                   
+val Loss: 0.4811 Acc: 0.4535                                                                                                                                     
+Epoch 5/25
+----------
+train Loss: 0.3153 Acc: 0.5694                                                                                                                                   
+val Loss: 0.4772 Acc: 0.5203                                                                                                                                     
+Epoch 6/25
+----------
+train Loss: 0.2725 Acc: 0.6182                                                                                                                                   
+val Loss: 0.4897 Acc: 0.5320                                                                                                                                     
+Epoch 7/25
+----------
+train Loss: 0.2363 Acc: 0.6635                                                                                                                                   
+val Loss: 0.4468 Acc: 0.5233                                                                                                                                     
+Epoch 8/25
+----------
+train Loss: 0.1889 Acc: 0.7308                                                                                                                                   
+val Loss: 0.3972 Acc: 0.6250                                                                                                                                     
+Epoch 9/25
+----------
+train Loss: 0.1652 Acc: 0.7489                                                                                                                                   
+val Loss: 0.3815 Acc: 0.6279                                                                                                                                     
+Epoch 10/25
+----------
+train Loss: 0.1573 Acc: 0.7755                                                                                                                                   
+val Loss: 0.3948 Acc: 0.6308                                                                                                                                     
+Epoch 11/25
+----------
+train Loss: 0.1483 Acc: 0.7797                                                                                                                                   
+val Loss: 0.3801 Acc: 0.6483                                                                                                                                     
+Epoch 12/25
+----------
+train Loss: 0.1458 Acc: 0.7955                                                                                                                                   
+val Loss: 0.3875 Acc: 0.6395                                                                                                                                     
+Epoch 13/25
+----------
+train Loss: 0.1346 Acc: 0.8065                                                                                                                                   
+val Loss: 0.3967 Acc: 0.6541                                                                                                                                     
+Epoch 14/25
+----------
+train Loss: 0.1271 Acc: 0.8149                                                                                                                                   
+val Loss: 0.3989 Acc: 0.6483                                                                                                                                     
+Epoch 15/25
+----------
+train Loss: 0.1276 Acc: 0.8140                                                                                                                                   
+val Loss: 0.3965 Acc: 0.6657                                                                                                                                     
+Epoch 16/25
+----------
+train Loss: 0.1306 Acc: 0.8124                                                                                                                                   
+val Loss: 0.3931 Acc: 0.6483                                                                                                                                     
+Epoch 17/25
+----------
+train Loss: 0.1252 Acc: 0.8130                                                                                                                                   
+val Loss: 0.3964 Acc: 0.6541                                                                                                                                     
+Epoch 18/25
+----------
+train Loss: 0.1220 Acc: 0.8266                                                                                                                                   
+val Loss: 0.3955 Acc: 0.6512                                                                                                                                     
+Epoch 19/25
+----------
+train Loss: 0.1231 Acc: 0.8175                                                                                                                                   
+val Loss: 0.3918 Acc: 0.6512                                                                                                                                     
+Epoch 20/25
+----------
+train Loss: 0.1214 Acc: 0.8234                                                                                                                                   
+val Loss: 0.4010 Acc: 0.6512                                                                                                                                     
+Epoch 21/25
+----------
+train Loss: 0.1164 Acc: 0.8392                                                                                                                                   
+val Loss: 0.3986 Acc: 0.6483                                                                                                                                     
+Epoch 22/25
+----------
+train Loss: 0.1233 Acc: 0.8237                                                                                                                                   
+val Loss: 0.3894 Acc: 0.6541                                                                                                                                     
+Epoch 23/25
+----------
+train Loss: 0.1228 Acc: 0.8217                                                                                                                                   
+val Loss: 0.3991 Acc: 0.6483                                                                                                                                     
+Epoch 24/25
+----------
+train Loss: 0.1228 Acc: 0.8201                                                                                                                                   
+val Loss: 0.3995 Acc: 0.6453                                                                                                                                     
+Epoch 25/25
+----------
+train Loss: 0.1254 Acc: 0.8221                                                                                                                                   
+val Loss: 0.3909 Acc: 0.6570                                                                                                                                     
+Training complete in 197m 50s
+Best val Loss: 0.3801
+(.venv) bla@Blabook RetinalAnomalyDetection % 
