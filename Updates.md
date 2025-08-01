@@ -135,7 +135,7 @@ This includes:
 - [x] Visualize feature maps if applicable
       - [x] Found: Contrast && Dissimilarity
 - [x] Compare entropy values across classes to spot disorder patterns
-   - [ ] Visualizations (Contrast && Dissimilarity)
+   - [x] Visualizations (Contrast && Dissimilarity)
 
 ---
 
