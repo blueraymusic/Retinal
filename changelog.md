@@ -130,10 +130,12 @@ This includes:
 ---
 ## Planned Analysis (Checklist)
 
-- [ ] Evaluate model performance with GLCM-enhanced inputs
-- [ ] Assess contribution of texture & spectrum features
-- [ ] Visualize feature maps if applicable
-- [ ] Compare entropy values across classes to spot disorder patterns
+- [x] Evaluate model performance with GLCM-enhanced inputs
+- [x] Assess contribution of texture & spectrum features
+- [x] Visualize feature maps if applicable
+      - [x] Found: Contrast && Dissimilarity
+- [x] Compare entropy values across classes to spot disorder patterns
+   - [x] Visualizations (Contrast && Dissimilarity)
 
 ---
 

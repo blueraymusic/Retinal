@@ -103,7 +103,7 @@ Retinal-Disease-Detection/
     └── ...
 
 ├── models/
-    ├── model_best.pth
+    ├── model_v2.pth
     └── model_v1.pth
 
 ├── sub/
