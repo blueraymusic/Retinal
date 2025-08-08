@@ -1,7 +1,7 @@
 from openai import OpenAI
 client = OpenAI()
 
- """
+"""
     Transforms prediction results into a plain-language explanation using GPT-4o.
     High-confidence results are listed first, followed by low-confidence ones.
     

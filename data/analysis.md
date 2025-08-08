@@ -1,8 +1,8 @@
 # Retinal Disease Classification – Data Analysis
 
-This document contains extended analysis and visualizations that support the Updates.md in `Updates.md`.
+This document contains extended analysis and visualizations that support the changelog.md in `changelog.md`.
 
-[⬅ Back to Updates](../Updates.md)
+[⬅ Back to changelog](../changelog.md)
 
 ---
 

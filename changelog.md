@@ -126,7 +126,7 @@ This includes:
 - Use statistical metrics like **Shannon Entropy** to quantify image disorder and variation.
 
 
--> [View the Experiment Logs](data/trials.md)
+-> [View the Experiment Logs](data/experiment_log.md)
 ---
 ## Planned Analysis (Checklist)
 

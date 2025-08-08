@@ -8,9 +8,9 @@ A detailed log tracking model architecture changes, feature engineering (e.g., G
 - **Model**: ResNet50 (pretrained)
 - **Fine-tuned layers**: `layer4`, `fc`
 - **FC Layer**: `Linear(2048, num_classes)`
-- **Augmentations**: ✅ (random flip, rotation, etc.)
-- **Dropout**: ❌
-- **GLCM features**: ❌
+- **Augmentations**: (random flip, rotation, etc.)
+- **Dropout**: None
+- **GLCM features**: None
 
 **Train Loss**: 0.4883
 **Train Accuracy**: 42.22% 

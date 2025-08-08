@@ -19,7 +19,8 @@ from tqdm import tqdm
 
 #from utils import load_data, category_percentage, correlation_between_labels, venn_diagram
 from chart.utils import load_data, category_percentage, correlation_between_labels, venn_diagram
-#from sub.glcm import compute_glcm_features
+from glcm.resnet_glcm import ResNetWithInternalGLCM  # custom GLCM-enhanced model
+
 
 
 
@@ -33,6 +34,35 @@ from chart.utils import load_data, category_percentage, correlation_between_labe
 - Data Augmentation: Aggressive augmentations (flips, jitter, rotations) 
   are applied during training to increase robustness.
 """
+
+def constrained_bce_loss(preds, targets, pos_weight=None, normal_idx=-1):
+    """
+    Enhanced version with:
+    - Stronger penalty for normal+disease conflicts
+    - Separate weighting for normal vs diseases
+    """
+    # Split predictions and targets
+    disease_preds = preds[:, :normal_idx]
+    normal_preds = preds[:, normal_idx]
+    
+    disease_targets = targets[:, :normal_idx]
+    normal_targets = targets[:, normal_idx]
+    
+    # Calculate base losses
+    disease_loss = nn.BCEWithLogitsLoss(pos_weight=pos_weight[:normal_idx])(disease_preds, disease_targets)
+    normal_loss = nn.BCEWithLogitsLoss(pos_weight=pos_weight[normal_idx:])(normal_preds, normal_targets)
+    
+    # Calculate conflict penalty
+    disease_probs = torch.sigmoid(disease_preds.detach())
+    normal_probs = torch.sigmoid(normal_preds.detach())
+    
+    conflict = (disease_probs.max(dim=1).values > 0.8) & (normal_probs > 0.85)
+    penalty = conflict.float() * 0.3  # Increased penalty
+    
+    # Weighted combination
+    total_loss = 0.7*disease_loss + 0.3*normal_loss + penalty.mean()
+    
+    return total_loss
 
 
 class RetinalDisorderDataset(Dataset):
@@ -78,7 +108,8 @@ def get_pos_weight(df):
     return pos_weight
 
 
-def train_model(model, criterion, optimizer, scheduler, dataloaders, device, num_epochs=25, model_name=None):
+def train_model(model, criterion, optimizer, scheduler, dataloaders, device, num_epochs=25, model_name=None,
+                early_stopping_patience=5, early_stopping_delta=0.0):
     model_name = model_name if model_name else model.__class__.__name__
 
     if not os.path.exists('models'):
@@ -87,17 +118,16 @@ def train_model(model, criterion, optimizer, scheduler, dataloaders, device, num
     since = time.time()
     best_model_wts = copy.deepcopy(model.state_dict())
     best_loss = float('inf')
+    epochs_no_improve = 0
+
     loss_history = {'train': [], 'val': []}
 
     for epoch in range(1, num_epochs + 1):
-        print(f'Epoch {epoch}/{num_epochs}')
+        print(f'\nEpoch {epoch}/{num_epochs}')
         print('-' * 10)
 
         for phase in ['train', 'val']:
-            if phase == 'train':
-                model.train()
-            else:
-                model.eval()
+            model.train() if phase == 'train' else model.eval()
 
             running_loss = 0.0
             running_corrects = 0
@@ -127,19 +157,28 @@ def train_model(model, criterion, optimizer, scheduler, dataloaders, device, num
 
             loss_history[phase].append(epoch_loss)
 
+            print(f'{phase} Loss: {epoch_loss:.4f} Acc: {epoch_acc:.4f}')
+
             if phase == 'train':
-                print(f'{phase} Loss: {epoch_loss:.4f} Acc: {epoch_acc:.4f}')
                 scheduler.step()
             else:
-                print(f'{phase} Loss: {epoch_loss:.4f} Acc: {epoch_acc:.4f}')
+                if epoch_loss < best_loss - early_stopping_delta:
+                    print(f'Validation loss improved: {best_loss:.4f} → {epoch_loss:.4f}')
+                    best_loss = epoch_loss
+                    best_model_wts = copy.deepcopy(model.state_dict())
+                    torch.save(model.state_dict(), f'models/{model_name}.pth')
+                    epochs_no_improve = 0
+                else:
+                    epochs_no_improve += 1
+                    print(f'No improvement for {epochs_no_improve} epoch(s)')
 
-            if phase == 'val' and epoch_loss < best_loss:
-                best_loss = epoch_loss
-                best_model_wts = copy.deepcopy(model.state_dict())
-                torch.save(model.state_dict(), f'models/{model_name}_best.pth')
+                if epochs_no_improve >= early_stopping_patience:
+                    print(f'\nEarly stopping triggered after {epoch} epochs.')
+                    model.load_state_dict(best_model_wts)
+                    return model, loss_history
 
     time_elapsed = time.time() - since
-    print(f'Training complete in {time_elapsed//60:.0f}m {time_elapsed%60:.0f}s')
+    print(f'\nTraining complete in {time_elapsed//60:.0f}m {time_elapsed%60:.0f}s')
     print(f'Best val Loss: {best_loss:.4f}')
 
     model.load_state_dict(best_model_wts)
@@ -180,22 +219,26 @@ if __name__ == '__main__':
     img_transforms = {
     'train': transforms.Compose([
         transforms.ToPILImage(),
-        transforms.RandomHorizontalFlip(p=0.5),
-        transforms.RandomRotation(degrees=360),  #trial 15 to 30
-        transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.1), 
-        transforms.RandomResizedCrop(224, scale=(0.9, 1.0)),  
+        transforms.RandomHorizontalFlip(p=0.2), 
+        transforms.RandomVerticalFlip(p=0.2),           
+        transforms.RandomRotation(degrees=5),        
+        transforms.ColorJitter(brightness=0.15, contrast=0.25, saturation=0.25), 
+        transforms.GaussianBlur(kernel_size=3, sigma=(0.1, 0.1)),
+        transforms.RandomResizedCrop(224, scale=(0.9, 1.0)),
         transforms.ToTensor(),
         transforms.Normalize([0.485, 0.456, 0.406],
                              [0.229, 0.224, 0.225])
     ]),
     'val': transforms.Compose([
         transforms.ToPILImage(),
-        transforms.Resize((224, 224)), 
+        transforms.Resize((224, 224)),
         transforms.ToTensor(),
         transforms.Normalize([0.485, 0.456, 0.406],
                              [0.229, 0.224, 0.225])
     ]),
     }
+
+
 
 
     data_df = {'train': train_data, 'val': val_data}
@@ -212,7 +255,7 @@ if __name__ == '__main__':
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     print(f'Using device: {device}')
 
-    model = models.resnet50(pretrained=True)
+    """model = models.resnet50(pretrained=True)
 
     # Freeze layers except last block & fc
     for name, param in model.named_parameters():
@@ -220,25 +263,38 @@ if __name__ == '__main__':
         if "layer4" not in name and "fc" not in name:
             param.requires_grad = False
 
-    """
     num_ftrs = model.fc.in_features
     model.fc = nn.Linear(num_ftrs, len(disease_labels))
-    """
     num_ftrs = model.fc.in_features
     model.fc = nn.Sequential(
-        nn.Dropout(p=0.2),  # 20% dropout before final layer
+        #nn.Dropout(p=0.35),  # 20% dropout before final layer
         nn.Linear(num_ftrs, len(disease_labels))
     )
-    model = model.to(device)
+    model = model.to(device)"""
+    
+    model = ResNetWithInternalGLCM(num_classes=len(disease_labels)).to(device)
+
 
     pos_weight = get_pos_weight(train_df.iloc[:, 1:])
     pos_weight = torch.tensor(pos_weight, dtype=torch.float32).to(device)
 
-    criterion = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
-    optimizer = torch.optim.Adam(model.parameters(), lr=0.0001)
-    scheduler = lr_scheduler.StepLR(optimizer, step_size=7, gamma=0.1)
+    #criterion = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
+    criterion = lambda outputs, targets: constrained_bce_loss(
+    outputs, targets, pos_weight=pos_weight, normal_idx=len(disease_labels) - 1
+)
 
-    model, loss_history = train_model(model, criterion, optimizer, scheduler, dataloaders, device,
-                                      num_epochs=25, model_name='model_with_dropout')
+    #optimizer = torch.optim.Adam(model.parameters(), lr=0.0001)
+    optimizer = torch.optim.Adam(model.parameters(), lr=0.00003, weight_decay=1e-4) #try lr = 0.00005 
+
+    #scheduler = lr_scheduler.StepLR(optimizer, step_size=7, gamma=0.1)
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=30)
+
+    model, loss_history = train_model(
+        model, criterion, optimizer, scheduler, dataloaders, device,
+        num_epochs=40,
+        model_name='v4_d_changed',
+        early_stopping_patience=5,
+        early_stopping_delta=0.001
+    )
 
     plot_loss_history(loss_history['train'], loss_history['val'])
