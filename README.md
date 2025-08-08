@@ -1,6 +1,6 @@
 ## Retinal Anomaly Detection
  
-**Explainable AI for Retinal Disease Detection using Deep Learning**
+**Explainable A.I model for Retinal Disease Detection using Deep Learning**
 
 ---
 
