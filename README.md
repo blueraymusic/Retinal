@@ -181,7 +181,7 @@ We suspect with high confidence the presence of diabetic retinopathy (99.4%), ma
 -  Feedback loop for post-diagnosis correction and retraining 
 -  Lightweight offline mode for clinics  
 
--> [View Updates](Updates.md)
+-> [View Updates](changelog.md)
 Updates.md would contain & track all the experiments advancements and failures regarding the data analysis and model performance. Summarizing it in order to keep track over time.
 
 ---
