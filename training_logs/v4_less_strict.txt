@@ -1,0 +1,181 @@
+source /Users/bla/Desktop/RetinalAnomalyDetection/.venv/bin/activate
+/Users/bla/Desktop/RetinalAnomalyDetection/.venv/bin/python /Users/bla/Desktop/RetinalAnomalyDetection/train.py
+bla@Blabook RetinalAnomalyDetection % source /Users/bla/Desktop/RetinalAnomalyDetection/.venv/bin/activate
+(.venv) bla@Blabook RetinalAnomalyDetection % /Users/bla/Desktop/RetinalAnomalyDetection/.venv/bin/python /Users/bla/Desktop/RetinalAnomalyDetection/train.py
+FILE EXISTS
+Using device: cpu
+/Users/bla/Desktop/RetinalAnomalyDetection/.venv/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/Users/bla/Desktop/RetinalAnomalyDetection/.venv/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet50_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet50_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+
+Epoch 1/40
+----------
+ 98%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▉  | 64100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 65                                                                                                                                             train Loss: 0.9303 Acc: 0.0511
+val Loss: 0.7260 Acc: 0.1134                                                                                                                 
+Validation loss improved: inf → 0.7260
+
+Epoch 2/40
+----------
+train Loss: 0.7405 Acc: 0.1074                                                                                                               
+val Loss: 0.6548 Acc: 0.1570                                                                                                                 
+Validation loss improved: 0.7260 → 0.6548
+
+Epoch 3/40
+----------
+train Loss: 0.6526 Acc: 0.1449                                                                                                               
+val Loss: 0.5890 Acc: 0.2064                                                                                                                                             
+Validation loss improved: 0.6548 → 0.5890
+
+Epoch 4/40
+----------
+train Loss: 0.5834 Acc: 0.1844                                                                                                                                           
+val Loss: 0.5515 Acc: 0.2587                                                                                                                                             
+Validation loss improved: 0.5890 → 0.5515
+
+Epoch 5/40
+----------
+train Loss: 0.5366 Acc: 0.2190                                                                                                                                           
+val Loss: 0.5353 Acc: 0.2965                                                                                                                                             
+Validation loss improved: 0.5515 → 0.5353
+
+Epoch 6/40
+----------
+train Loss: 0.4903 Acc: 0.2507                                                                                                                                           
+val Loss: 0.5044 Acc: 0.3081                                                                                                                                             
+Validation loss improved: 0.5353 → 0.5044
+
+Epoch 7/40
+----------
+train Loss: 0.4674 Acc: 0.2782                                                                                                                                           
+val Loss: 0.4825 Acc: 0.3547                                                                                                                                             
+Validation loss improved: 0.5044 → 0.4825
+
+Epoch 8/40
+----------
+train Loss: 0.4287 Acc: 0.3112                                                                                                                                           
+val Loss: 0.4643 Acc: 0.4070                                                                                                                                             
+Validation loss improved: 0.4825 → 0.4643
+
+Epoch 9/40
+----------
+train Loss: 0.4000 Acc: 0.3452                                                                                                                                           
+val Loss: 0.4493 Acc: 0.4360                                                                                                                                             
+Validation loss improved: 0.4643 → 0.4493
+
+Epoch 10/40
+----------
+train Loss: 0.3817 Acc: 0.3727                                                                                                                                           
+val Loss: 0.4321 Acc: 0.4709                                                                                                                                             
+Validation loss improved: 0.4493 → 0.4321
+
+Epoch 11/40
+----------
+train Loss: 0.3684 Acc: 0.4005                                                                                                                                           
+val Loss: 0.4391 Acc: 0.4564                                                                                                                                             
+No improvement for 1 epoch(s)
+
+Epoch 12/40
+----------
+train Loss: 0.3422 Acc: 0.4306                                                                                                                                           
+val Loss: 0.4357 Acc: 0.4767                                                                                                                                             
+No improvement for 2 epoch(s)
+
+Epoch 13/40
+----------
+train Loss: 0.3210 Acc: 0.4562                                                                                                                                           
+val Loss: 0.4148 Acc: 0.4971                                                                                                                                             
+Validation loss improved: 0.4321 → 0.4148
+
+Epoch 14/40
+----------
+train Loss: 0.3116 Acc: 0.4830                                                                                                                                           
+val Loss: 0.4183 Acc: 0.5436                                                                                                                                             
+No improvement for 1 epoch(s)
+
+Epoch 15/40
+----------
+train Loss: 0.2897 Acc: 0.5057                                                                                                                                           
+val Loss: 0.4197 Acc: 0.5233                                                                                                                                             
+No improvement for 2 epoch(s)
+
+Epoch 16/40
+----------
+train Loss: 0.2807 Acc: 0.5383                                                                                                                                           
+val Loss: 0.4202 Acc: 0.5465                                                                                                                                             
+No improvement for 3 epoch(s)
+
+Epoch 17/40
+----------
+train Loss: 0.2679 Acc: 0.5568                                                                                                                                           
+val Loss: 0.4034 Acc: 0.5727                                                                                                                                             
+Validation loss improved: 0.4148 → 0.4034
+
+Epoch 18/40
+----------
+train Loss: 0.2580 Acc: 0.5772                                                                                                                                           
+val Loss: 0.3965 Acc: 0.5901                                                                                                                                             
+Validation loss improved: 0.4034 → 0.3965
+
+Epoch 19/40
+----------
+train Loss: 0.2528 Acc: 0.5914                                                                                                                                           
+val Loss: 0.3963 Acc: 0.6047                                                                                                                                             
+No improvement for 1 epoch(s)
+
+Epoch 20/40
+----------
+train Loss: 0.2444 Acc: 0.5982                                                                                                                                           
+val Loss: 0.4018 Acc: 0.5930                                                                                                                                             
+No improvement for 2 epoch(s)
+
+Epoch 21/40
+----------
+train Loss: 0.2414 Acc: 0.6092                                                                                                                                           
+val Loss: 0.3958 Acc: 0.6192                                                                                                                                             
+No improvement for 3 epoch(s)
+
+Epoch 22/40
+----------
+train Loss: 0.2498 Acc: 0.6121                                                                                                                                           
+val Loss: 0.3970 Acc: 0.6163                                                                                                                                             
+No improvement for 4 epoch(s)
+
+Epoch 23/40
+----------
+train Loss: 0.2311 Acc: 0.6364                                                                                                                                           
+val Loss: 0.3840 Acc: 0.6192                                                                                                                                             
+Validation loss improved: 0.3965 → 0.3840
+
+Epoch 24/40
+----------
+train Loss: 0.2239 Acc: 0.6512                                                                                                                                           
+val Loss: 0.3928 Acc: 0.6017                                                                                                                                             
+No improvement for 1 epoch(s)
+
+Epoch 25/40
+----------
+train Loss: 0.2202 Acc: 0.6561                                                                                                                                           
+val Loss: 0.4027 Acc: 0.5988                                                                                                                                             
+No improvement for 2 epoch(s)
+
+Epoch 26/40
+----------
+train Loss: 0.2238 Acc: 0.6441                                                                                                                                           
+val Loss: 0.3905 Acc: 0.6279                                                                                                                                             
+No improvement for 3 epoch(s)
+
+Epoch 27/40
+----------
+train Loss: 0.2234 Acc: 0.6445                                                                                                                                           
+val Loss: 0.3925 Acc: 0.6192                                                                                                                                             
+No improvement for 4 epoch(s)
+
+Epoch 28/40
+----------
+train Loss: 0.2228 Acc: 0.6493                                                                                                                                           
+val Loss: 0.3902 Acc: 0.6279                                                                                                                                             
+No improvement for 5 epoch(s)
+
+Early stopping triggered after 28 epochs.
+(.venv) bla@Blabook RetinalAnomalyDetection % 
