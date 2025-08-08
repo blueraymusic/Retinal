@@ -27,3 +27,4 @@ venv/
 build/
 dist/
 *.egg-info/
+models/*.pth
