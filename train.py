@@ -292,7 +292,7 @@ if __name__ == '__main__':
     model, loss_history = train_model(
         model, criterion, optimizer, scheduler, dataloaders, device,
         num_epochs=40,
-        model_name='v4_d_changed',
+        model_name='v4_d_10',
         early_stopping_patience=5,
         early_stopping_delta=0.001
     )
