@@ -116,7 +116,7 @@ This includes:
 
 ---
 
-## v3
+## v3 & Beyond
 
 - **Incorporate GLCM (Gray-Level Co-occurrence Matrix)** for texture feature extraction.
 - Consider **color spectrum features** as additional input dimensions.
@@ -142,7 +142,7 @@ This includes:
 
 - Targets
   - [x] Achieved 63% without overfitting
-  - [] Achieved 80% without overfitting
+  - [-] Achieved 80% without overfitting
 
 ## Check Progress & Trials
 -> [View the Experiment Logs](data/experiment_log.md)
