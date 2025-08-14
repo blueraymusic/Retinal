@@ -116,7 +116,7 @@ This includes:
 
 ---
 
-## Next Steps (v3 Plan)
+## v3
 
 - **Incorporate GLCM (Gray-Level Co-occurrence Matrix)** for texture feature extraction.
 - Consider **color spectrum features** as additional input dimensions.
@@ -126,16 +126,26 @@ This includes:
 - Use statistical metrics like **Shannon Entropy** to quantify image disorder and variation.
 
 
--> [View the Experiment Logs](data/experiment_log.md)
+---
+
 ---
 ## Planned Analysis (Checklist)
 
-- [x] Evaluate model performance with GLCM-enhanced inputs
-- [x] Assess contribution of texture & spectrum features
-- [x] Visualize feature maps if applicable
-      - [x] Found: Contrast && Dissimilarity
-- [x] Compare entropy values across classes to spot disorder patterns
-   - [x] Visualizations (Contrast && Dissimilarity)
+- [x] Implemented GLCM as a feature (contrast & dissimilarity -> Texture)
+- [x] Implemented penalty loss for co-occurence with "normal" predicitons (.8 confidence)
+- [x] Fined tuned more layers to reduce overfitting & augment accuracy -> ["layer2","layer3", "layer4", "fc"]
+- [x] Tried Ensemble Bagging to improve generalization and reduce overfitting
+
+- [x] Created a general ensemble model trials (Bagging + Previous Models)
+
+
+
+- Targets
+  - [x] Achieved 63% without overfitting
+  - [] Achieved 80% without overfitting
+
+## Check Progress & Trials
+-> [View the Experiment Logs](data/experiment_log.md)
 
 ---
 

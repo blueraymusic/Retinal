@@ -1,22 +1,19 @@
-from app import RetinalAnomalyDetector, InferenceApp
+import subprocess
+
+
+"""
+This main was written to simplify the app_main starts !!!
+"""
 
 def main():
-    """Main application entry point."""
-    try:
-        MODEL_PATH = 'models/v4_less_strict.pth'
-        LABELS_CSV = 'data/train/train.csv'
-        
-        print("Initializing retinal anomaly detector...")
-        detector = RetinalAnomalyDetector(MODEL_PATH, LABELS_CSV)
-        
-        print("Starting application...")
-        app = InferenceApp(detector)
-        app.mainloop()
-        
-    except Exception as e:
-        messagebox.showerror("Startup Error", f"Failed to start application: {str(e)}")
-        raise
+    result = subprocess.run(
+        ["streamlit", "run", "app_main.py"],
+        capture_output=True,
+        text=True
+    )
+    print("Stdout:", result.stdout)
+    print("Stderr:", result.stderr)
+    print("Return Code:", result.returncode)
 
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
