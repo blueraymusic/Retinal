@@ -43,6 +43,11 @@ if not current_key or not is_valid_key(current_key):
     st.stop()  # Block the rest of the app until a valid key is set
 
 
+# ========== Model Check ==========
+from models.model_checker import check_models
+check_models()  # This will block the app if no models exist
+# ========== Model Check ==========
+
 
 #local packages 
 from glcm.resnet_glcm import ResNetWithInternalGLCM

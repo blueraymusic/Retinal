@@ -28,11 +28,10 @@ from glcm.resnet_glcm import ResNetWithInternalGLCM  # custom GLCM-enhanced mode
 - Transfer Learning: ResNet-50 pretrained on ImageNet is fine-tuned 
   for retinal disease classification.
 
-- Layer Freezing: Only the final ResNet block (`layer4`) and the 
-  fully connected layer (`fc`) are trained; all earlier layers are frozen. # so only updating/changing the last year for effiency
-
 - Data Augmentation: Aggressive augmentations (flips, jitter, rotations) 
   are applied during training to increase robustness.
+
+- Access the resnet_glcm to see the "ResNetWithInternalGLCM" 
 """
 
 def constrained_bce_loss(preds, targets, pos_weight=None, normal_idx=-1):
