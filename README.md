@@ -139,7 +139,7 @@ Retinal-Disease-Detection/
 ├── .gitignore
 ├── LICENSE
 ├── app_main.py                  # Main execution script
-├── main.py                      # Main app entry point - Run Directly
+├── main.py                      # Main app entry point - Run First
 ├── train.py                     # Model training script
 ├── requirements.txt             # Dependencies
 ├── README.md
