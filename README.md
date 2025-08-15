@@ -185,6 +185,25 @@ Retinal-Disease-Detection/
 
 ---
 
+## Installation
+#### 1. Clone the Repository
+```bash
+git clone https://github.com/username/RetinalAnomalyDetection.git
+cd RetinalAnomalyDetection
+```
+
+#### 2. Install Requirements
+- Python Version: **3.12.3** 
+```bash
+pip install -r requirements.txt
+```
+
+#### 3. Application Running
+```bash
+python main.app 
+```
+---
+
 ## Current Updates & Future Directions
 
 -  Feedback loop for post-diagnosis correction and retraining 
@@ -195,7 +214,6 @@ Updates.md would contain & track all the experiments advancements and failures r
 
 ---
 
----
 
 ## License  
 **MIT License** – Free for use in research, education, and development.
