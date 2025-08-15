@@ -17,7 +17,8 @@ This project builds an **automated and explainable AI system** to assist healthc
 ## My Objective
 To build an end-to-end AI pipeline that:
 - Detects multiple retinal diseases from fundus images  
-- Explains its predictions in **plain English** using **GPT-4** as the interpreter
+- Explains its predictions in **plain English**
+- Uses a Grad-Cam (heapmap) to add depth to its prediction
 
 The aim is to make diagnosis faster, more transparent, and educational—for both patients and practitioners.
 
@@ -49,10 +50,10 @@ As of now, the diseases covered by the model are:
   - Verifies image validity  
   - Preprocesses and predicts diseases (With Percentages)
   - Displays top diseases with confidence scores  
-  - Explains the results via **GPT-4 API**
+  - Explains the results in plain english covering how and what the eye is subject to
 
 ### 3. Explainability
-- **GPT-4**: Converts technical predictions into human-readable summaries  
+- Converts technical predictions into human-readable summaries  
 
 ---
 
@@ -71,8 +72,8 @@ As of now, the diseases covered by the model are:
 | Model Training    | PyTorch, Torchvision       |
 | Data Handling     | Numpy                      |
 | NLP Explanation   | OpenAI GPT-4 API           |
-| Inference Server  | Flask                      |
-| Optional UI       | Web (H, C, J) or TKinter   |
+| Inference Server  | Streamlit                  |
+| Optional UI       | Css, Html                  |
 
 ---
 
@@ -80,52 +81,70 @@ As of now, the diseases covered by the model are:
 
 ```
 Retinal-Disease-Detection/
-├── chart/
-    ├── __init__.py
-    ├── glcm.py
-    └── utils.py
-
-├── data/
-    ├── test/
-        └── ...
-    ├── train/
-        ├──train/
-           ├── img.jpg
-           └── ...
-        └── train.csv
-    ├── data_analysis.md
-    └── trials.md
-
-├── data_visual/
-    └── output/
-        └── chart.png
-    ├── data.png
-    └── ...
-
-├── models/
-    ├── model_v2.pth
-    └── model_v1.pth
-
-├── sub/
-    ├── __init__.py
-    ├── checker.py
-    ├── explainer.py
-    └── inference.py
-
-├── trainOutputs/
-    └── graph/
-        ├── v1_loss_plot.png
-        └── v2_loss_plot.png
-    ├── v1.txt
-    └── v2.txt
-
-├── .gitignore 
+│
+├── apptest/
+│   └── app.py                  # Prototype app (v1)
+│
+├── chart/                      # GLCM chart generation utilities
+│   ├── __init__.py
+│   ├── glcmchart.py
+│   └── utils.py
+│
+├── data/                       # Datasets & experiment notes
+│   ├── test/                   # Test images
+│   │   └── ...
+│   ├── train/
+│   │   ├── train/              # Training images
+│   │   │   ├── img.jpg
+│   │   │   └── ...
+│   │   └── train.csv           # Training metadata
+│   ├── analysis.md             # Dataset analysis
+│   └── experiment_log.md       # Experiment records
+│
+├── glcm/                       # GLCM feature extraction & model integration
+│   ├── __init__.py
+│   ├── glcm.py
+│   └── resnet_glcm.py
+│
+├── ensemble/                   # Ensemble learning scripts
+│   ├── ensemble_inference.py
+│   └── ensemble_train.py
+│
+├── visualization/              # Model output & visualization assets
+│   ├── output/
+│   │   ├── rbgspectrum_plot.png
+│   │   └── ...
+│   ├── data.png
+│   └── ...
+│
+├── models/                     # Saved models / model notes
+│   └── model.md
+│
+├── inference/                  # Inference & explainability tools
+│   ├── __init__.py
+│   ├── checker.py               # Image validation
+│   ├── explainer.py              # Grad-CAM & explanations
+│   └── inference.py              # Prediction pipeline
+│
+├── training_logs/              # Training history & evaluation
+│   ├── graphs/                  # Training curve plots
+│   │   ├── v1_loss_plot.png
+│   │   └── ...
+│   ├── prediction_json/         # Saved prediction results
+│   │   ├── ensemble_bagging.json
+│   │   └── ...
+│   ├── v1.txt
+│   └── ...
+│
+├── .gitignore
 ├── LICENSE
-├── main.py
+├── app_main.py                  # Main execution script
+├── main.py                      # Main app entry point - Run First
+├── train.py                     # Model training script
+├── requirements.txt             # Dependencies
 ├── README.md
-├── requirements.txt
-├── train.py
-└── Updates.md
+└── changelog.md                 # Update history
+
 
 ```
 
@@ -160,19 +179,9 @@ Retinal-Disease-Detection/
 ---
 
 ## Sample Output
+![Grad-Cam](visualization/1.png)
+![Analysis](visualization/2.png)
 
-![0e5235b62de8](https://github.com/user-attachments/assets/d9fbc550-1b09-4509-89aa-f4c3de6303ad)
-
-
-
-\`\`\`
-Prediction:
-- Diabetic Retinopathy: 99.4%
-- Opacity: 87.3%
-- Macular Degeneration: <1%
-\`\`\`
-
-We suspect with high confidence the presence of diabetic retinopathy (99.4%), macular edema (<1%), and opacity (87.3%) in the retinal image. These findings suggest that the patient is likely experiencing significant eye health issues. Diabetic retinopathy is a condition where high blood sugar levels damage blood vessels in the retina, potentially leading to vision loss. Macular edema involves swelling in the macula, the part of the retina responsible for sharp vision, which can result in blurred or distorted vision. Opacity, such as cataracts, causes clouding of the eye's lens, reducing clarity and brightness of vision. These conditions are crucial to address as they can lead to serious vision impairment or blindness if left untreated.
 
 ---
 

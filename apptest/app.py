@@ -18,6 +18,10 @@ from glcm.resnet_glcm import ResNetWithInternalGLCM
 from inference.explainer import explain_prediction
 from inference.checker import is_retinal_image_openai
 
+"""
+
+V1 of the the app which was made using tkinter for proof of concept !!
+"""
 class RetinalAnomalyDetector:
     def __init__(self, model_path, labels_csv, device=None):
         """Initialize the retinal anomaly detector with model and labels."""

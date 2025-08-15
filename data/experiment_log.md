@@ -148,3 +148,11 @@ A detailed log tracking model architecture changes, feature engineering (e.g., G
 | Ensemble_v4_except_mainv4   | —                     | —                         | 0.6499 (Avg)      | —                   | All v4 except main 'v4'                         | —                                               | "accuracy": 0.3343, "correct_predictions": 117 | —                          | —                          | —                           |
 | Ensemble_v4_except_mainv4 + Bagging_ensemble | —         | —                         | 0.6203 (Avg)      | —                   | Bagging Models + V4 except v4.pth               | —                                               | "accuracy": 0.3229, "correct_predictions": 113 | —                          | —                          | —                           |
 
+
+
+---
+
+## Model Comparison Sheet
+- Excel that sums up to overall achievements and progress of each trials
+- Path: https://docs.google.com/spreadsheets/d/1m7Sh9IqNyRXR4kUhNtJr5ysHhbIO8t5taDWMtYt0KWE/edit?usp=sharing
+

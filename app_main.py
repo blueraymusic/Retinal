@@ -6,7 +6,45 @@ import cv2
 import pandas as pd
 import time
 from io import BytesIO
+import openai
+import os
+# ========== Key Validation Checker  ==========
 
+#API exist and valid
+def is_valid_key(key: str) -> bool:
+    try:
+        openai.api_key = key
+        openai.models.list()  # Lightweight API call
+        return True
+    except Exception:
+        return False
+
+# Get current key from environment
+current_key = os.environ.get("OPENAI_API_KEY")
+
+# If no key or invalid key, prompt the user
+if not current_key or not is_valid_key(current_key):
+    st.set_page_config(page_title="Enter API Key", layout="centered")
+    st.title("OpenAI API Key Required")
+
+    if current_key and not is_valid_key(current_key):
+        st.error("The current API key is invalid. Please enter a valid one.")
+
+    key_input = st.text_input("OpenAI API Key:", type="password")
+    if key_input:
+        if is_valid_key(key_input.strip()):
+            os.environ["OPENAI_API_KEY"] = key_input.strip()
+            st.session_state["api_key"] = key_input.strip()
+            st.success("API Key is valid! Loading app...")
+            st.rerun()
+        else:
+            st.error("Invalid API Key. Please try again.")
+
+    st.stop()  # Block the rest of the app until a valid key is set
+
+
+
+#local packages 
 from glcm.resnet_glcm import ResNetWithInternalGLCM
 from inference.explainer import explain_prediction
 from inference.checker import is_retinal_image_openai

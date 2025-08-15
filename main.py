@@ -1,4 +1,5 @@
 import subprocess
+import os,sys
 
 
 """
@@ -6,6 +7,7 @@ This main was written to simplify the app_main starts !!!
 """
 
 def main():
+
     result = subprocess.run(
         ["streamlit", "run", "app_main.py"],
         capture_output=True,
