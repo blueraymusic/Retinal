@@ -83,6 +83,7 @@ As of now, the diseases covered by the model are:
 Retinal-Disease-Detection/
 │
 ├── apptest/
+│   ├── app_main.py              # Main execution script
 │   └── app.py                  # Prototype app (v1)
 │
 ├── chart/                      # GLCM chart generation utilities
@@ -138,7 +139,6 @@ Retinal-Disease-Detection/
 │
 ├── .gitignore
 ├── LICENSE
-├── app_main.py                  # Main execution script
 ├── main.py                      # Main app entry point - Run First
 ├── train.py                     # Model training script
 ├── requirements.txt             # Dependencies

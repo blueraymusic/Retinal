@@ -55,7 +55,7 @@ def constrained_bce_loss(preds, targets, pos_weight=None, normal_idx=-1):
     disease_probs = torch.sigmoid(disease_preds.detach())
     normal_probs = torch.sigmoid(normal_preds.detach())
     
-    conflict = (disease_probs.max(dim=1).values > 0.8) & (normal_probs > 0.85)
+    conflict = (disease_probs.max(dim=1).values > 0.9) & (normal_probs > 0.95)
     penalty = conflict.float() * 0.3  # Increased penalty
     
     # Weighted combination
@@ -291,7 +291,7 @@ if __name__ == '__main__':
     model, loss_history = train_model(
         model, criterion, optimizer, scheduler, dataloaders, device,
         num_epochs=40,
-        model_name='v4_d_10',
+        model_name='v4_best',
         early_stopping_patience=5,
         early_stopping_delta=0.001
     )

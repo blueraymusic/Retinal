@@ -174,11 +174,11 @@ def main():
         else:
             device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-        model_path = st.text_input("Model Currently Running", "models/v4_less_strict.pth")
+        model_path = st.text_input("Model Currently Running", "models/v4_best.pth")
         labels_csv = st.text_input("Disease Labels", "data/train/train.csv")
 
         st.markdown("---")
-        st.write("App Version: 1.1")
+        st.write("App Version: 1.3")
 
     # Load model and labels once
     with st.spinner("Loading model and labels..."):
