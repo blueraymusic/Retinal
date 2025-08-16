@@ -41,15 +41,15 @@ class ResNetWithInternalGLCM(nn.Module):
 
         self.classifier = nn.Sequential(
             nn.BatchNorm1d(num_resnet_features + 32),
-            nn.Dropout(0.1), #5 -> 3 -> 1
+            nn.Dropout(0.3), #5 -> 3 -> 1
             nn.Linear(num_resnet_features + 32, 1024),
             nn.GELU(),
             nn.BatchNorm1d(1024),
-            nn.Dropout(0.1), #4 -> 3 -> 1
+            nn.Dropout(0.5), #4 -> 3 -> 1
             nn.Linear(1024, 512),
             nn.SiLU(),
             nn.BatchNorm1d(512),
-            nn.Dropout(0.1), #3 -> 3 -> 1
+            nn.Dropout(0.3), #3 -> 3 -> 1
             nn.Linear(512, num_classes)
         )
 

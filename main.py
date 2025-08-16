@@ -9,7 +9,7 @@ This main was written to simplify the app_main starts !!!
 def main():
 
     result = subprocess.run(
-        ["streamlit", "run", "app_main.py"],
+        ["streamlit", "run", "app/app_main.py"],
         capture_output=True,
         text=True
     )
