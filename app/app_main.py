@@ -7,7 +7,7 @@ import pandas as pd
 import time
 from io import BytesIO
 import openai
-import os
+import os,sys
 # ========== Key Validation Checker  ==========
 
 #API exist and valid
@@ -44,6 +44,7 @@ if not current_key or not is_valid_key(current_key):
 
 
 # ========== Model Check ==========
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from models.model_checker import check_models
 check_models()  # This will block the app if no models exist
 # ========== Model Check ==========
@@ -92,8 +93,12 @@ def preprocess_image(img: Image.Image):
 
 def apply_normal_constraint(probs: np.ndarray, normal_idx: int):
     probs = probs.copy()
-    if probs[normal_idx] > 0.8:
+    if probs[normal_idx] > 0.9 and any( probs[i] > 0.9 for i in range(len(probs)) if i != normal_idx ):
+        probs[normal_idx] /= 4
+
+    elif probs[normal_idx] > 0.9 and not (any( probs[i] > 0.9 for i in range(len(probs)) if i != normal_idx )):
         probs[:normal_idx] = 0.0
+        
     return probs
 
 def generate_gradcam(model, input_tensor, device, original_image=None, target_layer_name="layer4"):
