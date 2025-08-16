@@ -7,6 +7,7 @@ MODELS = {
     "v4_less_strict.pth": "1OkuZxACzkVlLVE3hKWAO78GELk72j-Xo",
     "v4.pth": "1V5yGuEqpqlQI6gZkfz_nkEjT1G4hZUUb",
     "v4_d_changed.pth": "192nnSzP7TNufsbW2PVSr46a7TuUG_Hgr",
+    "v4_best.pth": "1-Cx3QxZLayBlEQZzb5AEPBY2SENlTIp9",
 }
 
 def download_model(file_name, file_id):
@@ -28,7 +29,7 @@ def check_models():
         col1, col2 = st.columns(2)
         with col1:
             if st.button("Download Default Model"):
-                download_model("v4_less_strict.pth", MODELS["v4_less_strict.pth"])
+                download_model("v4_best.pth", MODELS["v4_best.pth"])
                 st.rerun()
         with col2:
             if st.button("Download All Models"):
