@@ -73,7 +73,7 @@ As of now, the diseases covered by the model are:
 | Data Handling     | Numpy                      |
 | NLP Explanation   | OpenAI GPT-4 API           |
 | Inference Server  | Streamlit                  |
-| Optional UI       | Css, Html                  |
+| Optional UI       | Html & CSS                 |
 
 ---
 
