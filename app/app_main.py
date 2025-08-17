@@ -31,12 +31,14 @@ if not current_key or not is_valid_key(current_key):
         st.error("The current API key is invalid. Please enter a valid one.")
 
     key_input = st.text_input("OpenAI API Key:", type="password")
+    
     if key_input:
         if is_valid_key(key_input.strip()):
             os.environ["OPENAI_API_KEY"] = key_input.strip()
             st.session_state["api_key"] = key_input.strip()
             st.success("API Key is valid! Loading app...")
             st.rerun()
+
         else:
             st.error("Invalid API Key. Please try again.")
 

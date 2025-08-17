@@ -73,7 +73,7 @@ As of now, the diseases covered by the model are:
 | Data Handling     | Numpy                      |
 | NLP Explanation   | OpenAI GPT-4 API           |
 | Inference Server  | Streamlit                  |
-| Optional UI       | Css, Html                  |
+| Optional UI       | Html & CSS                 |
 
 ---
 
@@ -82,7 +82,7 @@ As of now, the diseases covered by the model are:
 ```
 Retinal-Disease-Detection/
 │
-├── apptest/
+├── app/
 │   ├── app_main.py              # Main execution script
 │   └── app.py                  # Prototype app (v1)
 │
@@ -119,7 +119,9 @@ Retinal-Disease-Detection/
 │   └── ...
 │
 ├── models/                     # Saved models / model notes
-│   └── model.md
+│   ├── __init__.py
+│   ├── model_checker.py        # checking model existance then download them if not  
+│   └── model.md                # Google drive path to the model 
 │
 ├── inference/                  # Inference & explainability tools
 │   ├── __init__.py

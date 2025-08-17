@@ -14,6 +14,7 @@ import threading
 import cv2
 
 # Import your custom modules
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from glcm.resnet_glcm import ResNetWithInternalGLCM
 from inference.explainer import explain_prediction
 from inference.checker import is_retinal_image_openai
@@ -482,7 +483,7 @@ class InferenceApp(tk.Tk):
             self.destroy()
 
 
-"""def main():
+def main():
     #Main application entry point.
     try:
         MODEL_PATH = 'models/v4_less_strict.pth'
@@ -501,4 +502,4 @@ class InferenceApp(tk.Tk):
 
 
 if __name__ == "__main__":
-    main()"""
+    main()

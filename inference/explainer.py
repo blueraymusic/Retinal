@@ -1,4 +1,11 @@
 from openai import OpenAI
+import os
+import sys
+
+# ========== Path Accessibility ==========
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+
 client = OpenAI()
 
 """
@@ -22,13 +29,22 @@ def explain_prediction(results):
     )
 
     response = client.chat.completions.create(
-        model="gpt-4o",
-        messages=[
-            {"role": "system", "content": "You are a helpful medical assistant."},
-            {"role": "user", "content": prompt}
-        ],
-        temperature=0.3,
-        max_tokens=250
-    )
+            model="gpt-4o",
+            messages=[
+                {"role": "system", "content": "You are a helpful medical assistant."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.3,
+            max_tokens=250
+        )
     return response.choices[0].message.content.strip()
 
+"""
+    except:
+        
+        Extra Precaution to ensure an explanation is provided
+        - Note: As long as the API is valid this would not run
+
+        from app import explain_prediction
+        return str(explain_prediction(results, thresold=0.5))
+"""
