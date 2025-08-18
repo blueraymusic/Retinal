@@ -1,6 +1,6 @@
 ## Retinal Anomaly Detection
  
-**Explainable AI for Retinal Disease Detection using Deep Learning**
+**Explainable A.I model for Retinal Disease Detection using Deep Learning**
 
 ---
 
@@ -211,7 +211,7 @@ python main.app
 -  Feedback loop for post-diagnosis correction and retraining 
 -  Lightweight offline mode for clinics  
 
--> [View Updates](Updates.md)
+-> [View Updates](changelog.md)
 Updates.md would contain & track all the experiments advancements and failures regarding the data analysis and model performance. Summarizing it in order to keep track over time.
 
 ---
