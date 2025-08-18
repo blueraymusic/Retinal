@@ -1,0 +1,181 @@
+source /Users/bla/Desktop/RetinalAnomalyDetection/.venv/bin/activate
+/Users/bla/Desktop/RetinalAnomalyDetection/.venv/bin/python /Users/bla/Desktop/RetinalAnomalyDetection/train.py
+bla@Blabook RetinalAnomalyDetection % source /Users/bla/Desktop/RetinalAnomalyDetection/.venv/bin/activate
+(.venv) bla@Blabook RetinalAnomalyDetection % /Users/bla/Desktop/RetinalAnomalyDetection/.venv/bin/python /Users/bla/Desktop/RetinalAnomalyDetection/train.py
+FILE EXISTS
+Using device: cpu
+/Users/bla/Desktop/RetinalAnomalyDetection/.venv/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/Users/bla/Desktop/RetinalAnomalyDetection/.venv/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet50_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet50_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+
+Epoch 1/40
+----------
+train Loss: 0.9093 Acc: 0.5989 F1_micro: 0.4174 F1_macro: 0.4076                                                                                                                                               
+val Loss: 0.7383 Acc: 0.6699 F1_micro: 0.5359 F1_macro: 0.5240                                                                                                                                                 
+Validation improved: -inf → -0.7383
+
+Epoch 2/40
+----------
+train Loss: 0.7143 Acc: 0.6805 F1_micro: 0.5261 F1_macro: 0.5172                                                                                                                                               
+val Loss: 0.6465 Acc: 0.7243 F1_micro: 0.5829 F1_macro: 0.5729                                                                                                                                                 
+Validation improved: -0.7383 → -0.6465
+
+Epoch 3/40
+----------
+train Loss: 0.6441 Acc: 0.7188 F1_micro: 0.5621 F1_macro: 0.5555                                                                                                                                               
+val Loss: 0.5843 Acc: 0.7562 F1_micro: 0.6136 F1_macro: 0.6038                                                                                                                                                 
+Validation improved: -0.6465 → -0.5843
+
+Epoch 4/40
+----------
+train Loss: 0.5757 Acc: 0.7560 F1_micro: 0.6031 F1_macro: 0.5963                                                                                                                                               
+val Loss: 0.5477 Acc: 0.7841 F1_micro: 0.6399 F1_macro: 0.6317                                                                                                                                                 
+Validation improved: -0.5843 → -0.5477
+
+Epoch 5/40
+----------
+train Loss: 0.5295 Acc: 0.7825 F1_micro: 0.6331 F1_macro: 0.6266                                                                                                                                               
+val Loss: 0.5048 Acc: 0.8231 F1_micro: 0.6881 F1_macro: 0.6735                                                                                                                                                 
+Validation improved: -0.5477 → -0.5048
+
+Epoch 6/40
+----------
+train Loss: 0.4923 Acc: 0.8017 F1_micro: 0.6565 F1_macro: 0.6500                                                                                                                                               
+val Loss: 0.4851 Acc: 0.8339 F1_micro: 0.7010 F1_macro: 0.6906                                                                                                                                                 
+Validation improved: -0.5048 → -0.4851
+
+Epoch 7/40
+----------
+train Loss: 0.4725 Acc: 0.8196 F1_micro: 0.6769 F1_macro: 0.6684                                                                                                                                               
+val Loss: 0.4721 Acc: 0.8364 F1_micro: 0.7081 F1_macro: 0.6969                                                                                                                                                 
+Validation improved: -0.4851 → -0.4721
+
+Epoch 8/40
+----------
+ 40%|████████████████████████████████████████████████████████████████████                                                                                                      | 26/65 [04:22<05:27,  8.40s/it]train Loss: 0.4291 Acc: 0.8326 F1_micro: 0.6971 F1_macro: 0.6910                                                                                                                                               
+val Loss: 0.4559 Acc: 0.8596 F1_micro: 0.7372 F1_macro: 0.7243                                                                                                                                                 
+Validation improved: -0.4721 → -0.4559
+
+Epoch 9/40
+----------
+train Loss: 0.4055 Acc: 0.8448 F1_micro: 0.7128 F1_macro: 0.7061                                                                                                                                               
+val Loss: 0.4373 Acc: 0.8642 F1_micro: 0.7415 F1_macro: 0.7241                                                                                                                                                 
+Validation improved: -0.4559 → -0.4373
+
+Epoch 10/40
+----------
+train Loss: 0.3914 Acc: 0.8553 F1_micro: 0.7276 F1_macro: 0.7206                                                                                                                                               
+val Loss: 0.4203 Acc: 0.8642 F1_micro: 0.7419 F1_macro: 0.7310                                                                                                                                                 
+Validation improved: -0.4373 → -0.4203
+
+Epoch 11/40
+----------
+train Loss: 0.3610 Acc: 0.8673 F1_micro: 0.7467 F1_macro: 0.7403                                                                                                                                               
+val Loss: 0.4286 Acc: 0.8650 F1_micro: 0.7427 F1_macro: 0.7292                                                                                                                                                 
+No improvement for 1 epoch(s)
+
+Epoch 12/40
+----------
+train Loss: 0.3476 Acc: 0.8770 F1_micro: 0.7605 F1_macro: 0.7551                                                                                                                                               
+val Loss: 0.4090 Acc: 0.8792 F1_micro: 0.7621 F1_macro: 0.7492                                                                                                                                                 
+Validation improved: -0.4203 → -0.4090
+
+Epoch 13/40
+----------
+train Loss: 0.3252 Acc: 0.8883 F1_micro: 0.7780 F1_macro: 0.7728                                                                                                                                               
+val Loss: 0.3977 Acc: 0.8850 F1_micro: 0.7705 F1_macro: 0.7585                                                                                                                                                 
+Validation improved: -0.4090 → -0.3977
+
+Epoch 14/40
+----------
+train Loss: 0.3116 Acc: 0.8921 F1_micro: 0.7845 F1_macro: 0.7785                                                                                                                                               
+val Loss: 0.3933 Acc: 0.8829 F1_micro: 0.7666 F1_macro: 0.7535                                                                                                                                                 
+Validation improved: -0.3977 → -0.3933
+
+Epoch 15/40
+----------
+train Loss: 0.2962 Acc: 0.9015 F1_micro: 0.7995 F1_macro: 0.7961                                                                                                                                               
+val Loss: 0.3987 Acc: 0.8929 F1_micro: 0.7828 F1_macro: 0.7713                                                                                                                                                 
+No improvement for 1 epoch(s)
+
+Epoch 16/40
+----------
+train Loss: 0.2877 Acc: 0.9068 F1_micro: 0.8086 F1_macro: 0.8032                                                                                                                                               
+val Loss: 0.3945 Acc: 0.8949 F1_micro: 0.7865 F1_macro: 0.7746                                                                                                                                                 
+No improvement for 2 epoch(s)
+
+Epoch 17/40
+----------
+train Loss: 0.2806 Acc: 0.9079 F1_micro: 0.8102 F1_macro: 0.8048                                                                                                                                               
+val Loss: 0.3905 Acc: 0.8999 F1_micro: 0.7913 F1_macro: 0.7813                                                                                                                                                 
+Validation improved: -0.3933 → -0.3905
+
+Epoch 18/40
+----------
+train Loss: 0.2704 Acc: 0.9148 F1_micro: 0.8223 F1_macro: 0.8184                                                                                                                                               
+val Loss: 0.3864 Acc: 0.8962 F1_micro: 0.7867 F1_macro: 0.7766                                                                                                                                                 
+Validation improved: -0.3905 → -0.3864
+
+Epoch 19/40
+----------
+train Loss: 0.2669 Acc: 0.9177 F1_micro: 0.8280 F1_macro: 0.8223                                                                                                                                               
+val Loss: 0.3742 Acc: 0.9074 F1_micro: 0.8059 F1_macro: 0.7913                                                                                                                                                 
+Validation improved: -0.3864 → -0.3742
+
+Epoch 20/40
+----------
+train Loss: 0.2549 Acc: 0.9216 F1_micro: 0.8349 F1_macro: 0.8297                                                                                                                                               
+val Loss: 0.3805 Acc: 0.9057 F1_micro: 0.8024 F1_macro: 0.7922                                                                                                                                                 
+No improvement for 1 epoch(s)
+
+Epoch 21/40
+----------
+train Loss: 0.2501 Acc: 0.9251 F1_micro: 0.8414 F1_macro: 0.8356                                                                                                                                               
+val Loss: 0.3767 Acc: 0.9091 F1_micro: 0.8081 F1_macro: 0.7998                                                                                                                                                 
+No improvement for 2 epoch(s)
+
+Epoch 22/40
+----------
+train Loss: 0.2470 Acc: 0.9269 F1_micro: 0.8440 F1_macro: 0.8397                                                                                                                                               
+val Loss: 0.3738 Acc: 0.9082 F1_micro: 0.8060 F1_macro: 0.7955                                                                                                                                                 
+No improvement for 3 epoch(s)
+
+Epoch 23/40
+----------
+train Loss: 0.2399 Acc: 0.9295 F1_micro: 0.8491 F1_macro: 0.8435                                                                                                                                               
+val Loss: 0.3677 Acc: 0.9120 F1_micro: 0.8131 F1_macro: 0.8026                                                                                                                                                 
+Validation improved: -0.3742 → -0.3677
+
+Epoch 24/40
+----------
+train Loss: 0.2356 Acc: 0.9323 F1_micro: 0.8546 F1_macro: 0.8496                                                                                                                                               
+val Loss: 0.3732 Acc: 0.9099 F1_micro: 0.8085 F1_macro: 0.7996                                                                                                                                                 
+No improvement for 1 epoch(s)
+
+Epoch 25/40
+----------
+train Loss: 0.2343 Acc: 0.9328 F1_micro: 0.8548 F1_macro: 0.8503                                                                                                                                               
+val Loss: 0.3715 Acc: 0.9061 F1_micro: 0.8024 F1_macro: 0.7912                                                                                                                                                 
+No improvement for 2 epoch(s)
+
+Epoch 26/40
+----------
+train Loss: 0.2307 Acc: 0.9342 F1_micro: 0.8581 F1_macro: 0.8543                                                                                                                                               
+val Loss: 0.3700 Acc: 0.9107 F1_micro: 0.8099 F1_macro: 0.7978                                                                                                                                                 
+No improvement for 3 epoch(s)
+
+Epoch 27/40
+----------
+train Loss: 0.2258 Acc: 0.9347 F1_micro: 0.8591 F1_macro: 0.8551                                                                                                                                               
+val Loss: 0.3694 Acc: 0.9115 F1_micro: 0.8127 F1_macro: 0.8058                                                                                                                                                 
+No improvement for 4 epoch(s)
+
+Epoch 28/40
+----------
+train Loss: 0.2254 Acc: 0.9342 F1_micro: 0.8578 F1_macro: 0.8532                                                                                                                                               
+val Loss: 0.3680 Acc: 0.9132 F1_micro: 0.8159 F1_macro: 0.8085                                                                                                                                                 
+No improvement for 5 epoch(s)
+
+Early stopping triggered after 28 epochs.
+(.venv) bla@Blabook RetinalAnomalyDetection %  
