@@ -142,7 +142,7 @@ This includes:
 
 - Targets
   - [x] Achieved 63% without overfitting
-  - [-] Achieved 80% without overfitting
+  - [x] Achieved 90% without overfitting
 
 ## Check Progress & Trials
 -> [View the Experiment Logs](data/experiment_log.md)
