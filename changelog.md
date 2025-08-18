@@ -144,6 +144,19 @@ This includes:
   - [x] Achieved 63% without overfitting
   - [x] Achieved 90% without overfitting
 
+ ### **v4_best_b**
+| Epoch | Train Loss | Train Acc | Val Loss | Val Acc |
+|-------|------------|-----------|----------|---------|
+| 1     | 0.9093     | 0.5989    | 0.7383   | 0.6699  |
+| 2     | 0.7143     | 0.6805    | 0.6465   | 0.7243  |
+| ...   | ...        | ...       | ...      | ...     |
+| 27    | 0.2258     | 0.9347    | 0.3680   | 0.9115  |
+| 28    | 0.2254     | 0.9342    | 0.3680   | 0.9132  |
+
+Early stopping triggered after 28 epochs.
+
+
+
 ## Check Progress & Trials
 -> [View the Experiment Logs](data/experiment_log.md)
 
