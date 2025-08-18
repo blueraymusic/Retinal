@@ -142,7 +142,7 @@ This includes:
 
 - Targets
   - [x] Achieved 63% without overfitting
-  - [x] Achieved 90% without overfitting
+  - [x] Achieved 90% without overfitting (Partial Correctness)
 
  ### **v4_best_b**
 | Epoch | Train Loss | Train Acc | Val Loss | Val Acc |
