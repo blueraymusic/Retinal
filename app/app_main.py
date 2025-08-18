@@ -24,7 +24,12 @@ current_key = os.environ.get("OPENAI_API_KEY")
 
 # If no key or invalid key, prompt the user
 if not current_key or not is_valid_key(current_key):
-    st.set_page_config(page_title="Enter API Key", layout="centered")
+    st.set_page_config(
+        page_title="API Key", 
+        layout="centered",
+        page_icon = "../visualization/icon.png"
+    )
+        
     st.title("OpenAI API Key Required")
 
     if current_key and not is_valid_key(current_key):
@@ -62,7 +67,7 @@ st.set_page_config(
     page_title="Retinal Anomaly Detector",
     layout="wide",
     initial_sidebar_state="auto",
-    page_icon=""
+    page_icon="visualization/icon.png"
 )
 
 # ========== Helper Functions ==========
@@ -249,7 +254,9 @@ def main():
 
     st.subheader("Interpretation")
     explanation_text = explain_prediction(sorted_results)
-    st.markdown(f"<pre style='font-family: monospace; background:#f5f5f5; padding:10px;'>{explanation_text}</pre>", unsafe_allow_html=True)
+    explanation_text = explanation_text.replace("*","")
+
+    st.markdown(f"<pre style='font-family: monospace; background:#f5f5f5; padding:30px;'>{explanation_text}</pre>", unsafe_allow_html=True)
 
     st.markdown("---")
     st.caption("Model & data ©  Blueray / Company")

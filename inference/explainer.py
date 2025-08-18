@@ -23,10 +23,12 @@ def explain_prediction(results):
 
     prompt = (
         f"We analyzed a retinal image and detected the following conditions with high confidence: {top_str}.\n"
-        f"There are also signs of these conditions with lower probability: {low_str}.\n"
-        f"Now, state what we suspect with the confidence rates then explain that its likely something .\n"
-        f"Explain in 3 simple sentences what these anomalies mean and why they are important for vision and health."
+        f"There are also signs of these conditions with lower probability: {low_str}.\n\n"
+        f"The probability indicates how likely it is present in this patient. "
+        f"Evidences present on the scan such as veins and etc...\n\n"
+        f"Keep it short, maximum 10 sentences\n\n"
     )
+
 
     response = client.chat.completions.create(
             model="gpt-4o",
