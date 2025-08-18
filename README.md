@@ -71,7 +71,7 @@ As of now, the diseases covered by the model are:
 |-------------------|----------------------------|
 | Model Training    | PyTorch, Torchvision       |
 | Data Handling     | Numpy                      |
-| NLP Explanation   | OpenAI GPT-4 API           |
+| NLP Explanation   | OpenAI GPT-4 API / LLama   |
 | Inference Server  | Streamlit                  |
 | Optional UI       | Html & CSS                 |
 
