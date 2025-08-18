@@ -14,6 +14,7 @@ from torchvision import models, transforms
 
 from sklearn.model_selection import train_test_split
 from tqdm import tqdm
+from sklearn.metrics import f1_score
 
 # utils.py for visuals
 
@@ -36,32 +37,41 @@ from glcm.resnet_glcm import ResNetWithInternalGLCM  # custom GLCM-enhanced mode
 
 def constrained_bce_loss(preds, targets, pos_weight=None, normal_idx=-1):
     """
-    Enhanced version with:
-    - Stronger penalty for normal+disease conflicts
-    - Separate weighting for normal vs diseases
+    BCE loss with a differentiable conflict penalty for normal+disease conflicts.
+    
+    Args:
+        preds: [batch_size, num_classes] raw logits
+        targets: same shape, float labels (0/1)
+        pos_weight: tensor for class imbalance
+        normal_idx: index of the 'normal' class
     """
-    # Split predictions and targets
+    # Split disease vs normal
     disease_preds = preds[:, :normal_idx]
     normal_preds = preds[:, normal_idx]
-    
+
     disease_targets = targets[:, :normal_idx]
     normal_targets = targets[:, normal_idx]
-    
-    # Calculate base losses
+
+    # Base BCE losses
     disease_loss = nn.BCEWithLogitsLoss(pos_weight=pos_weight[:normal_idx])(disease_preds, disease_targets)
     normal_loss = nn.BCEWithLogitsLoss(pos_weight=pos_weight[normal_idx:])(normal_preds, normal_targets)
-    
-    # Calculate conflict penalty
-    disease_probs = torch.sigmoid(disease_preds.detach())
-    normal_probs = torch.sigmoid(normal_preds.detach())
-    
-    conflict = (disease_probs.max(dim=1).values > 0.9) & (normal_probs > 0.95)
-    penalty = conflict.float() * 0.3  # Increased penalty
-    
-    # Weighted combination
-    total_loss = 0.7*disease_loss + 0.3*normal_loss + penalty.mean()
-    
+
+    # Sigmoid probabilities
+    disease_probs = torch.sigmoid(disease_preds)
+    normal_probs = torch.sigmoid(normal_preds)
+
+    # Differentiable conflict score
+    # Penalizes high normal + high disease prediction
+    # Soft margin: values > 1.8 (0.9+0.9) start to get penalized
+    max_disease = disease_probs.max(dim=1).values
+    conflict_score = torch.clamp(max_disease + normal_probs - 1.8, min=0)
+    penalty = conflict_score.mean() * 0.3  # Weight of penalty
+
+    # Total weighted loss
+    total_loss = 0.7 * disease_loss + 0.3 * normal_loss + penalty
+
     return total_loss
+
 
 
 class RetinalDisorderDataset(Dataset):
@@ -106,9 +116,12 @@ def get_pos_weight(df):
         pos_weight.append(weight)
     return pos_weight
 
+"""
+less stricter validations
+"""
 
 def train_model(model, criterion, optimizer, scheduler, dataloaders, device, num_epochs=25, model_name=None,
-                early_stopping_patience=5, early_stopping_delta=0.0):
+                early_stopping_patience=5, early_stopping_delta=0.0, use_f1_early_stop=False):
     model_name = model_name if model_name else model.__class__.__name__
 
     if not os.path.exists('models'):
@@ -116,7 +129,7 @@ def train_model(model, criterion, optimizer, scheduler, dataloaders, device, num
 
     since = time.time()
     best_model_wts = copy.deepcopy(model.state_dict())
-    best_loss = float('inf')
+    best_score = float('-inf')  # Track best F1 or loss
     epochs_no_improve = 0
 
     loss_history = {'train': [], 'val': []}
@@ -129,7 +142,8 @@ def train_model(model, criterion, optimizer, scheduler, dataloaders, device, num
             model.train() if phase == 'train' else model.eval()
 
             running_loss = 0.0
-            running_corrects = 0
+            all_labels = []
+            all_preds = []
 
             for inputs, labels in tqdm(dataloaders[phase], leave=False):
                 inputs = inputs.to(device)
@@ -149,21 +163,30 @@ def train_model(model, criterion, optimizer, scheduler, dataloaders, device, num
                         optimizer.step()
 
                 running_loss += loss.item() * inputs.size(0)
-                running_corrects += torch.sum((preds_rounded == labels).all(dim=1)).item()
+                all_labels.append(labels.detach().cpu())
+                all_preds.append(preds_rounded.detach().cpu())
+
+            all_labels = torch.cat(all_labels, dim=0).numpy()
+            all_preds = torch.cat(all_preds, dim=0).numpy()
 
             epoch_loss = running_loss / len(dataloaders[phase].dataset)
-            epoch_acc = running_corrects / len(dataloaders[phase].dataset)
+            epoch_acc = (all_preds == all_labels).mean()  # Per-label accuracy
+            epoch_f1_micro = f1_score(all_labels, all_preds, average='micro')
+            epoch_f1_macro = f1_score(all_labels, all_preds, average='macro')
 
             loss_history[phase].append(epoch_loss)
 
-            print(f'{phase} Loss: {epoch_loss:.4f} Acc: {epoch_acc:.4f}')
+            print(f'{phase} Loss: {epoch_loss:.4f} Acc: {epoch_acc:.4f} '
+                  f'F1_micro: {epoch_f1_micro:.4f} F1_macro: {epoch_f1_macro:.4f}')
 
+            # Scheduler step
             if phase == 'train':
                 scheduler.step()
             else:
-                if epoch_loss < best_loss - early_stopping_delta:
-                    print(f'Validation loss improved: {best_loss:.4f} → {epoch_loss:.4f}')
-                    best_loss = epoch_loss
+                current_score = epoch_f1_micro if use_f1_early_stop else -epoch_loss  # maximize F1 or minimize loss
+                if current_score > best_score + early_stopping_delta:
+                    print(f'Validation improved: {best_score:.4f} → {current_score:.4f}')
+                    best_score = current_score
                     best_model_wts = copy.deepcopy(model.state_dict())
                     torch.save(model.state_dict(), f'models/{model_name}.pth')
                     epochs_no_improve = 0
@@ -178,7 +201,7 @@ def train_model(model, criterion, optimizer, scheduler, dataloaders, device, num
 
     time_elapsed = time.time() - since
     print(f'\nTraining complete in {time_elapsed//60:.0f}m {time_elapsed%60:.0f}s')
-    print(f'Best val Loss: {best_loss:.4f}')
+    print(f'Best val Score: {best_score:.4f}')
 
     model.load_state_dict(best_model_wts)
     return model, loss_history
@@ -291,7 +314,7 @@ if __name__ == '__main__':
     model, loss_history = train_model(
         model, criterion, optimizer, scheduler, dataloaders, device,
         num_epochs=40,
-        model_name='v4_best',
+        model_name='v4_best_b',
         early_stopping_patience=5,
         early_stopping_delta=0.001
     )
