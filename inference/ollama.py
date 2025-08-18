@@ -33,6 +33,7 @@ def explain_prediction(results):
     return response["message"]["content"].strip().replace("*", "")
 
 # ===== Test with random results =====
+"""
 results = [
     ("Diabetic Retinopathy", 0.78),
     ("Glaucoma", 0.42),
@@ -41,3 +42,4 @@ results = [
 ]
 
 print(explain_prediction(results))
+"""
