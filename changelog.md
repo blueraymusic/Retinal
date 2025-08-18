@@ -154,7 +154,7 @@ This includes:
 | 28    | 0.2254     | 0.9342    | 0.3680   | 0.9132  |
 
 Early stopping triggered after 28 epochs.
-
+<img width="1426" height="783" alt="v4_best_b" src="https://github.com/TechX-Resources/RetinalAnomalyDetection/blob/main/training_logs/graphs/v4_best_b.png" />
 
 
 ## Check Progress & Trials
