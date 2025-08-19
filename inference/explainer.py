@@ -27,6 +27,8 @@ def explain_prediction(results):
         f"The probability indicates how likely it is present in this patient. "
         f"Evidences present on the scan such as veins and etc...\n\n"
         f"Keep it short, maximum 10 sentences\n\n"
+        f"Use bullet points for readability!\n\n"
+        f"No more than 6 bullets\n\n"
     )
 
 
