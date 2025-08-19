@@ -2,6 +2,7 @@ import os
 import time
 import copy
 import numpy as np
+import json
 
 import matplotlib.pyplot as plt
 
@@ -15,6 +16,7 @@ from torchvision import models, transforms
 from sklearn.model_selection import train_test_split
 from tqdm import tqdm
 from sklearn.metrics import f1_score
+
 
 # utils.py for visuals
 
@@ -156,7 +158,7 @@ def train_model(model, criterion, optimizer, scheduler, dataloaders, device, num
                     loss = criterion(outputs, labels)
 
                     preds = torch.sigmoid(outputs)
-                    preds_rounded = torch.round(preds)
+                    preds_rounded = torch.round(preds)   #after the sigmoid transformation
 
                     if phase == 'train':
                         loss.backward()
@@ -165,6 +167,20 @@ def train_model(model, criterion, optimizer, scheduler, dataloaders, device, num
                 running_loss += loss.item() * inputs.size(0)
                 all_labels.append(labels.detach().cpu())
                 all_preds.append(preds_rounded.detach().cpu())
+
+                #------------------ Saving for Analysis ------------------
+                """data = {
+                    pre_rounded: 
+                }
+                try:
+                    with open("pred_data.json", 'r') as file:
+                        json.load(file)
+                
+                except FileNotFoundError:
+                    data = []
+                
+
+                """
 
             all_labels = torch.cat(all_labels, dim=0).numpy()
             all_preds = torch.cat(all_preds, dim=0).numpy()

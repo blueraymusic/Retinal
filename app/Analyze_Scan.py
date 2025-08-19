@@ -101,7 +101,7 @@ def preprocess_image(img: Image.Image):
 def apply_normal_constraint(probs: np.ndarray, normal_idx: int):
     probs = probs.copy()
     if probs[normal_idx] > 0.9 and any( probs[i] > 0.9 for i in range(len(probs)) if i != normal_idx ):
-        probs[normal_idx] /= 4
+        probs[normal_idx] /= 4.5
 
     elif probs[normal_idx] > 0.9 and not (any( probs[i] > 0.9 for i in range(len(probs)) if i != normal_idx )):
         probs[:normal_idx] = 0.0
@@ -163,6 +163,7 @@ def resize_for_display(image: Image.Image, max_width: int = 480):
         new_size = (max_width, int(height * ratio))
         image = image.resize(new_size, Image.LANCZOS)
     return image
+
 
 # ========== Main App ==========
 
@@ -252,13 +253,30 @@ def main():
     df_results = pd.DataFrame(sorted_results, columns=["Condition", "Confidence"])
     st.dataframe(df_results.style.format({"Confidence": "{:.2%}"}))
 
-    st.subheader("Interpretation")
+
+    #st.subheader("Interpretation")
     explanation_text = explain_prediction(sorted_results)
     explanation_text = explanation_text.replace("*","")
-
-    st.markdown(f"<pre style='font-family: monospace; background:#f5f5f5; padding:30px;'>{explanation_text}</pre>", unsafe_allow_html=True)
-
+    
+    # --- Interpretation ---
+    st.markdown("### Interpretation")
+    st.markdown(
+        f"<div style='padding: 20px;background: rgb(255 255 255 / 0%); font-family:Arial; font-size:14px; border-radius: 10px;font-family: monospace;color: rgb(255 255 255);''>"
+        f"{explanation_text}</div>",
+        unsafe_allow_html=True
+    )
     st.markdown("---")
+
+
+    # ========= Add Medical Report Button =========
+    if st.button("Show Report"):
+        st.session_state["report_data"] = {
+            "results": sorted_results,
+            "explanation": explanation_text
+        }
+        st.switch_page("pages/Report.py")
+
+
     st.caption("Model & data ©  Blueray / Company")
 
 if __name__ == "__main__":
