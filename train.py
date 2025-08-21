@@ -3,6 +3,7 @@ import time
 import copy
 import numpy as np
 import json
+import pandas as pd
 
 import matplotlib.pyplot as plt
 
@@ -23,7 +24,6 @@ from sklearn.metrics import f1_score
 #from utils import load_data, category_percentage, correlation_between_labels, venn_diagram
 from chart.utils import load_data, category_percentage, correlation_between_labels, venn_diagram
 from glcm.resnet_glcm import ResNetWithInternalGLCM  # custom GLCM-enhanced model
-
 
 
 
@@ -136,6 +136,8 @@ def train_model(model, criterion, optimizer, scheduler, dataloaders, device, num
 
     loss_history = {'train': [], 'val': []}
 
+    mislabel_log = [] # keep mislabels across all epochs
+
     for epoch in range(1, num_epochs + 1):
         print(f'\nEpoch {epoch}/{num_epochs}')
         print('-' * 10)
@@ -168,22 +170,30 @@ def train_model(model, criterion, optimizer, scheduler, dataloaders, device, num
                 all_labels.append(labels.detach().cpu())
                 all_preds.append(preds_rounded.detach().cpu())
 
-                #------------------ Saving for Analysis ------------------
-                """data = {
-                    pre_rounded: 
-                }
-                try:
-                    with open("pred_data.json", 'r') as file:
-                        json.load(file)
-                
-                except FileNotFoundError:
-                    data = []
-                
-
-                """
 
             all_labels = torch.cat(all_labels, dim=0).numpy()
             all_preds = torch.cat(all_preds, dim=0).numpy()
+
+
+            # ---------------- Save predictions & mislabels ----------------
+            if phase == 'val':  # usually best to analyze validation set
+                for i in range(len(all_labels)):
+                    true_vec = all_labels[i].tolist()
+                    pred_vec = all_preds[i].tolist()
+                    if true_vec != pred_vec:  # mismatched
+                        mislabel_log.append({
+                            "epoch": epoch,
+                            "index": i,
+                            "true": true_vec,
+                            "pred": pred_vec
+                        })
+
+                # Save after each epoch (append mode)
+                df = pd.DataFrame(mislabel_log)
+                df.to_csv("classification/mislabel_log.csv", index=False)
+            # ----------------------------------------------------------------
+
+
 
             epoch_loss = running_loss / len(dataloaders[phase].dataset)
             epoch_acc = (all_preds == all_labels).mean()  # Per-label accuracy

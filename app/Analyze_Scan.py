@@ -27,7 +27,7 @@ if not current_key or not is_valid_key(current_key):
     st.set_page_config(
         page_title="API Key", 
         layout="centered",
-        page_icon = "../visualization/icon.png"
+        page_icon = "visualization/logoO.png"
     )
         
     st.title("OpenAI API Key Required")
@@ -67,7 +67,7 @@ st.set_page_config(
     page_title="Retinal Anomaly Detector",
     layout="wide",
     initial_sidebar_state="auto",
-    page_icon="visualization/icon.png"
+    page_icon="visualization/logoO.png"
 )
 
 # ========== Helper Functions ==========
@@ -256,7 +256,7 @@ def main():
 
     #st.subheader("Interpretation")
     explanation_text = explain_prediction(sorted_results)
-    explanation_text = explanation_text.replace("*","")
+    explanation_text = explanation_text.replace("*","").replace("-", "\n-")
     
     # --- Interpretation ---
     st.markdown("### Interpretation")
@@ -269,12 +269,16 @@ def main():
 
 
     # ========= Add Medical Report Button =========
+    disclaimer = "\n\nDisclaimer: This is an automated assessment and should not be used as a substitute for professional medical advice."
     if st.button("Show Report"):
         st.session_state["report_data"] = {
             "results": sorted_results,
-            "explanation": explanation_text
+            "explanation": explanation_text + disclaimer
         }
-        st.switch_page("pages/Report.py")
+        # Save images too
+        st.session_state["original_img"] = img_disp
+        st.session_state["gradcam_img"] = gradcam_disp
+        st.switch_page("pages/Retinal_Report.py")
 
 
     st.caption("Model & data ©  Blueray / Company")
