@@ -21,10 +21,6 @@ captum==0.8.1
 
 # OpenAI / NLP
 openai==1.29.1
-markdown-it-py==4.0.0
-mdurl==0.1.2
-rich==14.1.0
-pygments==2.19.2
 
 # Utilities
 python-dotenv==1.0.1
