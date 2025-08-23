@@ -144,6 +144,7 @@ Retinal-Disease-Detection/
 ├── main.py                      # Main app entry point - Run First
 ├── train.py                     # Model training script
 ├── requirements.txt             # Dependencies
+├── SECURITY.md                  # Security Readme
 ├── README.md
 └── changelog.md                 # Update history
 
