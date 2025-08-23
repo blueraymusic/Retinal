@@ -28,6 +28,7 @@ def explain_prediction(results):
         f"Evidences present on the scan such as veins and etc...\n\n"
         f"Keep it short, maximum 10 sentences\n\n"
         f"Use bullet points for readability!\n\n"
+        f"For example at the end says: The Grad-CAM heatmap highlights areas of concern around the optic disc and macula. Early intervention is recommended to prevent progression to proliferative diabetic retinopathy\n\n"
         f"No more than 6 bullets\n\n"
     )
 
