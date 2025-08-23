@@ -8,6 +8,8 @@ scipy==1.12.2
 tqdm==4.66.1
 opencv-python==4.9.0.74
 Pillow==10.3.0
+seaborn==0.12.2
+matplotlib-venn==0.11.7
 
 # Deep Learning
 torch==2.4.1
