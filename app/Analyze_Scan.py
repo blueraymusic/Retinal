@@ -8,6 +8,7 @@ import time
 from io import BytesIO
 import openai
 import os,sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # ========== Key Validation Checker  ==========
 
 #API exist and valid
@@ -51,7 +52,6 @@ if not current_key or not is_valid_key(current_key):
 
 
 # ========== Model Check ==========
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from models.model_checker import check_models
 check_models()  # This will block the app if no models exist
 # ========== Model Check ==========
@@ -261,11 +261,12 @@ def main():
     # --- Interpretation ---
     st.markdown("### Interpretation")
     st.markdown(
-        f"<div style='padding: 20px;background: rgb(255 255 255 / 0%); font-family:Arial; font-size:14px; border-radius: 10px;font-family: monospace;color: rgb(255 255 255);''>"
+        f"<div style='padding: 20px; background: rgb(255 255 255 / 0%); font-family:Arial; font-size:14px; border-radius: 10px; font-family: monospace; color: rgb(30, 30, 30);'>"
         f"{explanation_text}</div>",
         unsafe_allow_html=True
     )
     st.markdown("---")
+
 
 
     # ========= Add Medical Report Button =========
