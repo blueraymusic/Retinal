@@ -8,6 +8,7 @@ import time
 from io import BytesIO
 import openai
 import os,sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # ========== Key Validation Checker  ==========
 
 #API exist and valid
@@ -51,7 +52,6 @@ if not current_key or not is_valid_key(current_key):
 
 
 # ========== Model Check ==========
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from models.model_checker import check_models
 check_models()  # This will block the app if no models exist
 # ========== Model Check ==========
