@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Favicon -->
-<link rel="icon" type="image/png" href="visualization/logoO.png">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retinal Anomaly Detection - Explainable AI for Healthcare</title>
+    <title>RetinalScope - Medical Vision Analytics for Healthcare</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -62,7 +59,7 @@
         }
         
         .gradient-text {
-            background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -73,36 +70,44 @@
     <!-- Navigation -->
     <nav class="glass-effect fixed w-full top-0 z-50 border-b border-gray-700/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <div class="text-2xl font-bold gradient-text">Retinal</div>
-                    <span class="ml-2 text-sm text-gray-400">AI Detection</span>
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-4">
+                 
+                    <div class="flex flex-col">
+                        <div class="text-2xl font-bold gradient-text">RetinalScope</div>
+                        <span class="text-xs text-gray-400 -mt-1">Medical Vision Analytics</span>
+                    </div>
                 </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#overview" class="text-gray-300 hover:text-blue-400 transition-colors">Overview</a>
-                    <a href="#features" class="text-gray-300 hover:text-blue-400 transition-colors">Features</a>
-                    <a href="#tech-stack" class="text-gray-300 hover:text-blue-400 transition-colors">Tech Stack</a>
-                    <a href="#results" class="text-gray-300 hover:text-blue-400 transition-colors">Results</a>
-                    <a href="#installation" class="text-gray-300 hover:text-blue-400 transition-colors">Installation</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#overview" class="text-gray-300 hover:text-blue-400 transition-colors font-medium">Overview</a>
+                    <a href="#features" class="text-gray-300 hover:text-blue-400 transition-colors font-medium">Features</a>
+                    <a href="#tech-stack" class="text-gray-300 hover:text-blue-400 transition-colors font-medium">Technology</a>
+                    <a href="#results" class="text-gray-300 hover:text-blue-400 transition-colors font-medium">Results</a>
+                    <a href="#installation" class="text-gray-300 hover:text-blue-400 transition-colors font-medium">Get Started</a>
                 </div>
-                <button onclick="document.getElementById('demo-modal').classList.remove('hidden')"
-        class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all neon-glow">
-                Try Demo
-                </button>
-
-
+                <div class="flex items-center space-x-4">
+                    <button class="text-gray-300 hover:text-blue-400 transition-colors font-medium">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="inline mr-2">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        GitHub
+                    </button>
+                    <button class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all font-medium shadow-lg">
+                        Try Demo
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="gradient-bg pt-20 pb-16">
+    <section class="bg-gradient-to-br from-gray-800 to-gray-900 pt-20 pb-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-2 gap-12 items-center min-h-[600px]">
                 <div class="text-white">
                     <h1 class="text-6xl font-bold mb-6 leading-tight">
-                        <span class="gradient-text">Retinal</span><br>
-                        <span class="text-white">AI Detection</span>
+                        <span class="gradient-text">RetinalScope</span><br>
+                        <span class="text-white">Medical Vision Analytics</span>
                     </h1>
                     <p class="text-xl mb-8 text-gray-100">
                         Explainable AI model for early detection of retinal diseases using deep learning. Helping healthcare professionals diagnose faster with transparent, interpretable results.
@@ -117,15 +122,15 @@
                     </div>
                     <div class="grid grid-cols-3 gap-6 text-center">
                         <div class="glass-effect p-4 rounded-xl border border-blue-500/20">
-                            <div class="text-2xl font-bold gradient-text">7</div>
+                            <div class="text-2xl font-bold text-blue-400">7</div>
                             <div class="text-sm text-gray-300">Diseases Detected</div>
                         </div>
-                        <div class="glass-effect p-4 rounded-xl border border-purple-500/20">
-                            <div class="text-2xl font-bold gradient-text">3,285</div>
+                        <div class="glass-effect p-4 rounded-xl border border-blue-500/20">
+                            <div class="text-2xl font-bold text-blue-400">3,285</div>
                             <div class="text-sm text-gray-300">Training Images</div>
                         </div>
-                        <div class="glass-effect p-4 rounded-xl border border-pink-500/20">
-                            <div class="text-2xl font-bold gradient-text">91%+</div>
+                        <div class="glass-effect p-4 rounded-xl border border-blue-500/20">
+                            <div class="text-2xl font-bold text-blue-400">95%+</div>
                             <div class="text-sm text-gray-300">Accuracy</div>
                         </div>
                     </div>
@@ -186,8 +191,8 @@
             </div>
             
             <div class="grid md:grid-cols-3 gap-8 mb-16">
-                <div class="text-center p-6 glass-effect rounded-xl border border-red-500/20">
-                    <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="text-center p-6 glass-effect rounded-xl border border-gray-600/20">
+                    <div class="w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-4">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                             <circle cx="12" cy="12" r="10"/>
                             <polyline points="12,6 12,12 16,14"/>
@@ -197,8 +202,8 @@
                     <p class="text-gray-300">Manual diagnosis requires extensive time from skilled ophthalmologists</p>
                 </div>
                 
-                <div class="text-center p-6 glass-effect rounded-xl border border-orange-500/20">
-                    <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="text-center p-6 glass-effect rounded-xl border border-gray-600/20">
+                    <div class="w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-4">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                             <path d="M9 12l2 2 4-4"/>
                             <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
@@ -209,8 +214,8 @@
                     <p class="text-gray-300">Different specialists may reach different conclusions for the same case</p>
                 </div>
                 
-                <div class="text-center p-6 glass-effect rounded-xl border border-red-500/20">
-                    <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="text-center p-6 glass-effect rounded-xl border border-gray-600/20">
+                    <div class="w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-4">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
                             <circle cx="12" cy="12" r="3"/>
@@ -222,7 +227,7 @@
                 </div>
             </div>
 
-            <div class="glass-effect p-8 rounded-xl border border-blue-500/20">
+            <div class="glass-effect p-8 rounded-xl border border-gray-600/20">
                 <h3 class="text-2xl font-bold text-white mb-4">Our Solution</h3>
                 <p class="text-lg text-gray-300 mb-4">
                     An automated and explainable AI system that assists healthcare professionals in detecting retinal anomalies accurately and interpretably, making diagnosis faster, more transparent, and educational.
@@ -271,8 +276,8 @@
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="feature-card glass-effect p-8 rounded-xl border border-blue-500/20 hover:border-blue-400/40 transition-all">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div class="feature-card card-bg p-8 rounded-lg hover:bg-gray-700/50 transition-all">
+                    <div class="w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-6">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                             <path d="M9 11H7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-2M9 11V9a2 2 0 1 1 4 0v2M9 11h6"/>
                         </svg>
@@ -281,8 +286,8 @@
                     <p class="text-gray-300">Simultaneously detects multiple retinal conditions with confidence scores using ResNet50 transfer learning.</p>
                 </div>
                 
-                <div class="feature-card glass-effect p-8 rounded-xl border border-green-500/20 hover:border-green-400/40 transition-all">
-                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div class="feature-card card-bg p-8 rounded-lg hover:bg-gray-700/50 transition-all">
+                    <div class="w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-6">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                             <polyline points="14,2 14,8 20,8"/>
@@ -294,8 +299,8 @@
                     <p class="text-gray-300">GPT-4 integration converts technical predictions into human-readable medical explanations.</p>
                 </div>
                 
-                <div class="feature-card glass-effect p-8 rounded-xl border border-purple-500/20 hover:border-purple-400/40 transition-all">
-                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div class="feature-card card-bg p-8 rounded-lg hover:bg-gray-700/50 transition-all">
+                    <div class="w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-6">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
                             <circle cx="8.5" cy="8.5" r="1.5"/>
@@ -306,8 +311,8 @@
                     <p class="text-gray-300">Visual heatmaps show exactly which areas of the retina influenced the AI's decision.</p>
                 </div>
                 
-                <div class="feature-card glass-effect p-8 rounded-xl border border-red-500/20 hover:border-red-400/40 transition-all">
-                    <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div class="feature-card card-bg p-8 rounded-lg hover:bg-gray-700/50 transition-all">
+                    <div class="w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-6">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                             <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
                             <circle cx="12" cy="13" r="3"/>
@@ -317,8 +322,8 @@
                     <p class="text-gray-300">Easy-to-use web interface for uploading fundus images and receiving instant analysis.</p>
                 </div>
                 
-                <div class="feature-card glass-effect p-8 rounded-xl border border-yellow-500/20 hover:border-yellow-400/40 transition-all">
-                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div class="feature-card card-bg p-8 rounded-lg hover:bg-gray-700/50 transition-all">
+                    <div class="w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-6">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                             <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
                         </svg>
@@ -327,8 +332,8 @@
                     <p class="text-gray-300">Fast inference with image validation, preprocessing, and disease prediction in seconds.</p>
                 </div>
                 
-                <div class="feature-card glass-effect p-8 rounded-xl border border-indigo-500/20 hover:border-indigo-400/40 transition-all">
-                    <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div class="feature-card card-bg p-8 rounded-lg hover:bg-gray-700/50 transition-all">
+                    <div class="w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-6">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                             <path d="M12 2L2 7l10 5 10-5-10-5z"/>
                             <path d="M2 17l10 5 10-5"/>
@@ -354,8 +359,8 @@
                 <div>
                     <h3 class="text-2xl font-bold text-white mb-6">Core Technologies</h3>
                     <div class="space-y-4">
-                        <div class="flex items-center p-4 glass-effect rounded-lg border border-orange-500/20">
-                            <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center mr-4">
+                        <div class="flex items-center p-4 card-bg rounded-lg">
+                            <div class="w-12 h-12 bg-gray-600 rounded-lg flex items-center justify-center mr-4">
                                 <span class="font-bold text-white">PT</span>
                             </div>
                             <div>
@@ -364,8 +369,8 @@
                             </div>
                         </div>
                         
-                        <div class="flex items-center p-4 glass-effect rounded-lg border border-green-500/20">
-                            <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center mr-4">
+                        <div class="flex items-center p-4 card-bg rounded-lg">
+                            <div class="w-12 h-12 bg-gray-600 rounded-lg flex items-center justify-center mr-4">
                                 <span class="font-bold text-white">AI</span>
                             </div>
                             <div>
@@ -374,8 +379,8 @@
                             </div>
                         </div>
                         
-                        <div class="flex items-center p-4 glass-effect rounded-lg border border-blue-500/20">
-                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mr-4">
+                        <div class="flex items-center p-4 card-bg rounded-lg">
+                            <div class="w-12 h-12 bg-gray-600 rounded-lg flex items-center justify-center mr-4">
                                 <span class="font-bold text-white">ST</span>
                             </div>
                             <div>
@@ -384,8 +389,8 @@
                             </div>
                         </div>
                         
-                        <div class="flex items-center p-4 glass-effect rounded-lg border border-purple-500/20">
-                            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center mr-4">
+                        <div class="flex items-center p-4 card-bg rounded-lg">
+                            <div class="w-12 h-12 bg-gray-600 rounded-lg flex items-center justify-center mr-4">
                                 <span class="font-bold text-white">NP</span>
                             </div>
                             <div>
@@ -398,7 +403,7 @@
                 
                 <div>
                     <h3 class="text-2xl font-bold text-white mb-6">Model Architecture</h3>
-                    <div class="glass-effect p-6 rounded-xl border border-gray-600/20">
+                    <div class="card-bg p-6 rounded-lg">
                         <div class="space-y-4">
                             <div class="border-l-4 border-blue-500 pl-4">
                                 <h4 class="font-semibold text-white">Base Model</h4>
@@ -422,21 +427,21 @@
                     <div class="mt-6">
                         <h4 class="font-semibold text-white mb-3">Dataset Details</h4>
                         <div class="grid grid-cols-2 gap-4 text-sm">
-                            <div class="glass-effect p-3 rounded border border-blue-500/20">
-                                <div class="font-semibold text-blue-400">Total Images</div>
-                                <div class="text-gray-300">3,285 fundus images</div>
+                            <div class="glass-effect p-3 rounded border border-gray-600/20">
+                                <div class="font-semibold text-gray-300">Total Images</div>
+                                <div class="text-gray-400">3,285 fundus images</div>
                             </div>
-                            <div class="glass-effect p-3 rounded border border-red-500/20">
-                                <div class="font-semibold text-red-400">Abnormal Cases</div>
-                                <div class="text-gray-300">2,710 images</div>
+                            <div class="glass-effect p-3 rounded border border-gray-600/20">
+                                <div class="font-semibold text-gray-300">Abnormal Cases</div>
+                                <div class="text-gray-400">3,210 images</div>
                             </div>
-                            <div class="glass-effect p-3 rounded border border-green-500/20">
-                                <div class="font-semibold text-green-400">Normal Cases</div>
-                                <div class="text-gray-300">575 images</div>
+                            <div class="glass-effect p-3 rounded border border-gray-600/20">
+                                <div class="font-semibold text-gray-300">Normal Cases</div>
+                                <div class="text-gray-400">575 images</div>
                             </div>
-                            <div class="glass-effect p-3 rounded border border-purple-500/20">
-                                <div class="font-semibold text-purple-400">Sources</div>
-                                <div class="text-gray-300">Kaggle + EyePACS</div>
+                            <div class="glass-effect p-3 rounded border border-gray-600/20">
+                                <div class="font-semibold text-gray-300">Sources</div>
+                                <div class="text-gray-400">Kaggle + EyePACS</div>
                             </div>
                         </div>
                     </div>
@@ -456,21 +461,21 @@
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div>
                     <h3 class="text-2xl font-bold text-white mb-6">Example Analysis</h3>
-                    <div class="glass-effect p-6 rounded-xl border border-gray-600/20">
+                    <div class="card-bg p-6 rounded-lg">
                         <div class="mb-4">
                             <h4 class="font-semibold text-white mb-2">Detected Conditions:</h4>
                             <div class="space-y-2">
                                 <div class="flex justify-between items-center">
                                     <span class="text-gray-300">Diabetic Retinopathy</span>
-                                    <span class="bg-red-500/20 text-red-400 px-2 py-1 rounded text-sm font-medium border border-red-500/30">87%</span>
+                                    <span class="bg-gray-600/20 text-gray-300 px-2 py-1 rounded text-sm font-medium border border-gray-600/30">87%</span>
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <span class="text-gray-300">Macular Edema</span>
-                                    <span class="bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded text-sm font-medium border border-yellow-500/30">23%</span>
+                                    <span class="bg-gray-600/20 text-gray-300 px-2 py-1 rounded text-sm font-medium border border-gray-600/30">23%</span>
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <span class="text-gray-300">Glaucoma</span>
-                                    <span class="bg-green-500/20 text-green-400 px-2 py-1 rounded text-sm font-medium border border-green-500/30">8%</span>
+                                    <span class="bg-gray-600/20 text-gray-300 px-2 py-1 rounded text-sm font-medium border border-gray-600/30">8%</span>
                                 </div>
                             </div>
                         </div>
@@ -478,14 +483,14 @@
                         <div class="border-t border-gray-600/30 pt-4">
                             <h4 class="font-semibold text-white mb-2">AI Explanation:</h4>
                             <p class="text-gray-300 text-sm leading-relaxed">
-                                "The analysis reveals significant signs of Diabetic Retinopathy with 87% confidence. Key indicators include Macular Degeneration, Macular Edema, and Opacity visible in the retinal blood vessels. The Grad-CAM heatmap highlights areas of concern around the optic disc and macula. Early intervention is recommended to prevent progression to proliferative diabetic retinopathy."
+                                "The analysis reveals significant signs of diabetic retinopathy with 87% confidence. Key indicators include microaneurysms, hemorrhages, and exudates visible in the retinal blood vessels. The Grad-CAM heatmap highlights areas of concern around the optic disc and macula. Early intervention is recommended to prevent progression to proliferative diabetic retinopathy."
                             </p>
                         </div>
                     </div>
                 </div>
                 
                 <div>
-                    <h3 class="text-2xl font-bold text-white mb-6">Grad-CAM Visualization</h3>
+                    <h3 class="text-2xl font-bold text-white mb-6"><span>Grad-CAM Visualization</span></h3>
                     <div class="glass-effect p-6 rounded-xl border border-gray-600/20">
                         <!-- Grad-CAM Heatmap Simulation -->
                         <div class="relative">
@@ -517,15 +522,15 @@
                             <div class="inline-flex items-center space-x-4 text-sm">
                                 <div class="flex items-center">
                                     <div class="w-3 h-3 bg-red-500 rounded mr-2"></div>
-                                    <span style="color: white;">High Attention</span>
+                                    <span style="color: aliceblue;">High Attention</span>
                                 </div>
                                 <div class="flex items-center">
                                     <div class="w-3 h-3 bg-yellow-500 rounded mr-2"></div>
-                                    <span style="color: white;" >Medium Attention</span>
+                                    <span style="color: aliceblue;">Medium Attention</span>
                                 </div>
                                 <div class="flex items-center">
                                     <div class="w-3 h-3 bg-blue-500 rounded mr-2"></div>
-                                    <span style="color: white;">Low Attention</span>
+                                    <span style="color: aliceblue;">Low Attention</span>
                                 </div>
                             </div>
                         </div>
@@ -546,21 +551,21 @@
             <div class="max-w-4xl mx-auto">
                 <div class="grid md:grid-cols-3 gap-8 mb-12">
                     <div class="text-center">
-                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <div class="w-12 h-12 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-4">
                             <span class="text-white font-bold">1</span>
                         </div>
                         <h3 class="font-semibold text-white mb-2">Clone Repository</h3>
                         <p class="text-gray-300 text-sm">Download the project from GitHub</p>
                     </div>
                     <div class="text-center">
-                        <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <div class="w-12 h-12 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-4">
                             <span class="text-white font-bold">2</span>
                         </div>
                         <h3 class="font-semibold text-white mb-2">Install Dependencies</h3>
                         <p class="text-gray-300 text-sm">Set up Python environment and packages</p>
                     </div>
                     <div class="text-center">
-                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <div class="w-12 h-12 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-4">
                             <span class="text-white font-bold">3</span>
                         </div>
                         <h3 class="font-semibold text-white mb-2">Run Application</h3>
@@ -614,12 +619,12 @@ python main.app
     </section>
 
     <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-r from-blue-900 via-purple-900 to-pink-900">
+    <section class="py-20 bg-gray-800">
         <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-white mb-6">Ready to Try <span class="gradient-text">Retinal</span>?</h2>
+            <h2 class="text-4xl font-bold text-white mb-6">Ready to Try <span class="gradient-text">RetinalScope</span>?</h2>
             <p class="text-xl text-gray-300 mb-8">Experience the future of retinal disease detection with explainable AI</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-blue-700 hover:to-purple-700 transition-all neon-glow">
+                <button class="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-700 transition-all">
                     Try Live Demo
                 </button>
                 <button class="glass-effect border-2 border-white/30 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/10 transition-all">
@@ -635,12 +640,12 @@ python main.app
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-4 gap-8">
                 <div>
-                    <div class="text-2xl font-bold mb-4 gradient-text">Retinal</div>
-                    <p class="text-gray-400 mb-4">Explainable AI for retinal disease detection, making healthcare more accessible and transparent.</p>
+                    <div class="text-2xl font-bold mb-4 gradient-text">RetinalScope</div>
+                    <p class="text-gray-400 mb-4">Advanced medical vision analytics for retinal disease detection, making healthcare more accessible and transparent.</p>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">GitHub</a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">Paper</a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">Dataset</a>
+                        <a href="https://github.com/blueraymusic/Retinal/" class="text-gray-400 hover:text-white transition-colors">GitHub</a>
+                        <a href="https://github.com/blueraymusic/Retinal/" class="text-gray-400 hover:text-white transition-colors">Paper</a>
+                        <a href="https://www.kaggle.com/competitions/vietai-advance-retinal-disease-detection-2020/data" class="text-gray-400 hover:text-white transition-colors">Dataset</a>
                     </div>
                 </div>
                 <div>
@@ -672,10 +677,9 @@ python main.app
                 </div>
             </div>
             <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-                <p>&copy; 2025 Retinal AI Project. Open source for educational and research purposes.</p>
+                <p>&copy; 2024 RetinalScope Project. Open source for educational and research purposes.</p>
             </div>
         </div>
-    
     </footer>
 
     <script>
@@ -703,7 +707,7 @@ python main.app
             }
         });
 
-       // Button click handlers
+        // Button click handlers
         document.querySelectorAll('button').forEach(button => {
             button.addEventListener('click', function() {
                 if (this.textContent.includes('Try Demo') || this.textContent.includes('Try Live Demo')) {
@@ -715,7 +719,6 @@ python main.app
                 }
             });
         });
-
 
         // Animate elements on scroll
         const observerOptions = {
@@ -740,5 +743,5 @@ python main.app
             observer.observe(card);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'973d0252173b50ec',t:'MTc1NTk3NzI2NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9746772a84624df4',t:'MTc1NjA3NjQyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
