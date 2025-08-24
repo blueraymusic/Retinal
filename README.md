@@ -1,6 +1,6 @@
 ## Retinal Anomaly Detection
  
-**Explainable AI for Retinal Disease Detection using Deep Learning**
+**Explainable A.I model for Retinal Disease Detection using Deep Learning**
 
 ---
 
@@ -37,6 +37,7 @@ As of now, the diseases covered by the model are:
 ---
 
 ## Project Overview
+**Website**: https://blueraymusic.github.io/Retinal/
 
 ### 1. Multi-Label Retinal Disease Classifier
 - **Model**: Transferring learning from  `ResNet50` (changed the 4th layer to train on the data, so as to keep the other trained features)
@@ -71,7 +72,7 @@ As of now, the diseases covered by the model are:
 |-------------------|----------------------------|
 | Model Training    | PyTorch, Torchvision       |
 | Data Handling     | Numpy                      |
-| NLP Explanation   | OpenAI GPT-4 API           |
+| NLP Explanation   | OpenAI GPT-4 API / LLama   |
 | Inference Server  | Streamlit                  |
 | Optional UI       | Html & CSS                 |
 
@@ -212,7 +213,7 @@ python main.app
 -  Feedback loop for post-diagnosis correction and retraining 
 -  Lightweight offline mode for clinics  
 
--> [View Updates](Updates.md)
+-> [View Updates](changelog.md)
 Updates.md would contain & track all the experiments advancements and failures regarding the data analysis and model performance. Summarizing it in order to keep track over time.
 
 ---

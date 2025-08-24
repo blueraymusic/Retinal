@@ -18,7 +18,7 @@ We take security vulnerabilities seriously and appreciate your help in keeping t
 If you discover a vulnerability, please follow these steps:
 
 1. **Report Immediately**  
-   Send an email to **sissokoadel057@[gmail].com** with the following details:  
+   **[Email me](mailto:sissokoadel057@gmail.com)** with the following details:  
    - A clear description of the vulnerability  
    - Steps to reproduce it  
    - Potential impact  
@@ -37,3 +37,4 @@ If you discover a vulnerability, please follow these steps:
 ---
 
 Thank you for helping us improve the security of **Retinal Anomaly Detection**.
+
