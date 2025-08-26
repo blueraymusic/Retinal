@@ -261,7 +261,7 @@ def main():
     # --- Interpretation ---
     st.markdown("### Interpretation")
     st.markdown(
-        f"<div style='padding: 20px; background: rgb(255 255 255 / 0%); font-family:Arial; font-size:14px; border-radius: 10px; font-family: monospace; color: rgb(30, 30, 30);'>"
+        f"<div style='padding: 20px; background: rgb(255 255 255 / 0%); font-family:Arial; font-size:14px; border-radius: 10px; font-family: monospace; color: rgb(255, 255, 255);'>"
         f"{explanation_text}</div>",
         unsafe_allow_html=True
     )
